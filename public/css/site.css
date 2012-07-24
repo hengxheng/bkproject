@@ -1,0 +1,82 @@
+/* 
+    Document   : site
+    Created on : 12/07/2012, 12:20:22 PM
+    Author     : staff2
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#header { 
+    width:100%;
+    height:300px;   
+}
+#logo {
+    width:100%;
+    height:240px;
+    background-image:url("../images/header.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#header-menu{
+    background-color:rgb(70,157,190);
+    width:100%;
+    height:60px;
+    text-align: center;
+}
+
+#header-menu a{
+   text-decoration:none;
+   color:black;
+}
+
+#header-menu a:hover {
+    color:white;
+}
+
+#header-menu ul{
+    list-style-type:none;
+   
+}
+
+#header-menu ul li{
+    display:inline;
+    float:left;
+    margin:10px;
+    font-size:2em;
+}
+
+.side-menu{
+    list-style-type:none;
+}
+#content {
+    width:100%;
+    min-height: 400px;
+}
+
+#footer {
+    background-color:grey;
+    width:100%;
+    height:100px;
+}
+
+#footer p{
+    margin:20px;
+    padding-top:40px;
+}
+.product_list {
+    border-collapse:collapse;
+    width: 80%;
+    margin: 30px;
+} 
+
+.product_list td{
+    border:solid 1px black;  
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+a:hover{
+    background-color:blue;
+}

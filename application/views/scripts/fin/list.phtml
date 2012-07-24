@@ -1,0 +1,26 @@
+
+<a href="<?php echo $this->url(array('controller' =>'fin', 'action'=>'add')); ?>">Add new fin</a>
+<table class="product_list">
+    <caption>
+        Fin
+    </caption>
+    <tr>
+       <td> Name </td>
+       <td> Item Code </td>
+       <td> Price </td>
+       <td> Size </td>
+       <td colspan ="2"> Action </td>
+    </tr>
+    
+    <?php foreach ( $this -> list as $product) : ?>
+    <tr>
+      <td> <?php echo $product-> product_name; ?></td>
+      <td> <?php echo $product-> item_code; ?></td>
+      <td> <?php echo $product-> price; ?> </td>
+      <td><?php echo $product-> size; ?></td>
+      <td> <a href="<?php echo $this->url(array("controller"=>"fin","action"=>"edit","id"=>$product->product_id)); ?>">Update</a>
+           <a href="<?php echo $this->url(array("controller"=>"fin","action"=>"delete","id"=>$product->product_id)); ?>">Delete</a>
+      </td>       
+    </tr>
+    <?php endforeach; ?>
+</table>

@@ -1,0 +1,25 @@
+<a href="<?php echo $this->url(array('controller' =>'wetsuit', 'action'=>'add')); ?>">Add new Suit</a>
+<table class="product_list">
+    <caption>
+        Wet Suit
+    </caption>
+    <tr> 
+       <td> Name </td>
+       <td> Item Code </td>
+       <td> Price </td>
+       <td> Type </td>
+       <td colspan ="2"> Action </td>
+    </tr>
+    
+    <?php foreach ( $this -> list as $product) : ?>
+    <tr>
+      <td> <?php echo $product-> product_name; ?></td>
+      <td> <?php echo $product-> item_code; ?></td>
+      <td> <?php echo $product-> price; ?> </td>
+      <td><?php echo $product-> type; ?></td>
+      <td> <a href="<?php echo $this->url(array("controller"=>"wetsuit","action"=>"edit","id"=>$product->product_id)); ?>">Update</a>
+           <a href="<?php echo $this->url(array("controller"=>"wetsuit","action"=>"delete","id"=>$product->product_id)); ?>">Delete</a>
+      </td>       
+    </tr>
+    <?php endforeach; ?>
+</table>

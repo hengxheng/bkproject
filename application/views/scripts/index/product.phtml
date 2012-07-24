@@ -1,0 +1,22 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<table class="product_table" width="100%">
+        <tr>
+            <td width="20%" class="listfield">
+                <ul class="side-menu">
+                <?php foreach ($this->categories as $category) : ?>
+                <li>
+                <a href="<?php echo $this-> url(array('controller'=>'index','action'=>'productlist','id'=>$category->product_category_id)); ?> ">
+                <?php echo $this->escape($category->category_name); ?> </a>
+                </li>
+                <?php endforeach; ?>      
+                </ul>
+            </td>
+             <td width="1" bgcolor="black"></td> 
+             <td width="80%" class="editfield">
+             </td>
+        </tr>
+</table>

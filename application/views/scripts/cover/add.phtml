@@ -1,0 +1,24 @@
+<table class="product_table" width="100%">
+ <tr>
+     <td width="20%" class="listfield">
+     <!--    
+         <a href="<?php echo $this->url(array('controller'=>'cover', 'action'=>'add')); ?>" >Add new cover</a> 
+         
+         <ul>
+             <?php foreach ($this-> surfboardlist as $surfboard): ?>
+             <li><a href=" <?php echo $this -> url(array('controller'=> 'surfboard',
+                 'action'=> 'edit', 'id'=> $surfboard -> product_id)); ?>"> <?php echo $this-> escape($surfboard -> product_name ); ?></a> </li>
+             <?php endforeach; ?>
+         </ul>
+       -->  
+     </td>
+     <td width="1" bgcolor="black"></td> 
+     <td width="80%" class="editfield">
+         <h1> Cover </h1>
+         <?php
+           echo $this -> form;
+           ?>
+     </td>
+ 
+ </tr>
+ </table>

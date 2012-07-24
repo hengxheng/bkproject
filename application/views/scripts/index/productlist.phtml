@@ -1,0 +1,14 @@
+<?php echo $this-> cname; ?>
+<br />
+<a href ="<?php echo $this -> url (array('controller'=> $this-> control, 'action' => 'add')); ?>">Add new <?php echo $this->cname; ?></a>
+
+<ul>
+    <?php foreach ($this->productlist as $product) : ?>
+    
+    <li>
+        <a href="<?php echo $this-> url(array('controller'=>$this -> control,'action'=>'edit','id'=>$product -> product_id )); ?> ">
+           <?php echo $this->escape($product->product_name); ?> </a>
+    </li>
+    
+    <?php endforeach; ?>      
+</ul>

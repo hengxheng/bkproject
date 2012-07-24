@@ -1,0 +1,43 @@
+<?php 
+ $this->headMeta()->appendHttpEquiv('Content-Type','text/html;charset=utf-8');
+ $this->headTitle()->setSeparator(' - ');
+ $this->headTitle('Blackhawk Internation Pty Ltd');
+ 
+ echo $this->doctype(); 
+ ?>
+
+<html xmlns="http://www.blackhawkinternation.com.au" xml:lang="en" lang="en">
+    <head>
+        <?php echo $this->headMeta(); ?>
+        <?php echo $this->headTitle(); ?>
+        <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/site.css'); ?>
+    </head>
+    
+    <body>
+        <div id="header">
+            <div id="logo"></div>
+            <div id="header-menu">
+                <ul>
+                    <li><a href="<?php echo $this->url(array('controller'=>'index','action'=>'product')); ?>"> Product Info</a></li>
+                    <li><a href="<?php echo $this->url(array('controller'=>'index','action'=>'stockup')); ?>">Stock Up</a></li>
+                    <li>Sales</li>
+                    <li>Stock</li>
+                    <li>Reports</li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            <h1><?php echo $this->escape($this->title); ?></h1>
+            
+           
+             <?php echo $this->layout()->content;  //echo the current action to display ?>            
+        </div>
+        <div id="footer">
+            <p>Storage Management System <br />
+            Blackhawk International Pty Dtd </p>
+        </div>
+        
+        
+    </body>    
+</html>
+
