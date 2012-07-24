@@ -6,6 +6,10 @@ class Application_Form_Supplier extends Zend_Form
     public function init()
     {
         $this -> setName('Suppliers');
+        $this ->setAttrib('enctype', 'multipart/form-data');
+        
+        $id = new Zend_Form_Element_Hidden('supplier_id');
+        $id -> addFilter('Int');
         
         $name = new Zend_Form_Element_Text('supplier_name');
         $name -> setLabel('Supplier name')
@@ -38,6 +42,11 @@ class Application_Form_Supplier extends Zend_Form
         $email -> setLabel('Email')
                 -> addFilter('stripTags')
                 -> addFilter('StringTrim');
+        
+        $submit = new Zend_Form_Element_Submit('submit');
+        $submit ->setAttrib('id','submit');
+        
+        $this -> addElements(array($id, $name, $contact_name, $phone, $address, $qq, $email, $submit));
         
     }
 

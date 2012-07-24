@@ -1,0 +1,15 @@
+<?php
+   $this -> title = "Delete";
+   $this -> headTitle($this -> Title);
+   
+?>
+
+<p> Delete <?php echo $this -> escape($this -> product['supplier_name'] ); ?> ? </p>
+
+<form action="<?php echo $this-> url (array("controller"=>"supplier","action"=>"delete")); ?>" method ="post" >
+    <div>
+        <input type ="hidden" name="id" value="<?php echo $this -> product['supplier_id']; ?>" />
+        <input type ="submit" name ="del" value ="Yes" />
+        <input type ="submit" name ="del" value="No" />
+    </div>
+</form>

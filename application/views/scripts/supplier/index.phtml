@@ -1,0 +1,29 @@
+<a href="<?php echo $this->url(array('controller' =>'supplier', 'action'=>'add')); ?>">Add new supplier</a>
+<table class="product_list">
+    <caption>
+        Suppliers
+    </caption>
+    <tr>
+       <td> Company Name </td>
+       <td> Contact Name </td>
+       <td> Phone </td>
+       <td> Address </td>
+       <td> QQ </td>
+       <td> Email </td>
+       <td colspan ="2"> Action </td>
+    </tr>
+    
+    <?php foreach ( $this -> list as $product) : ?>
+    <tr>
+      <td> <?php echo $product-> supplier_name; ?></td>
+      <td> <?php echo $product-> contact_name; ?></td>
+      <td> <?php echo $product-> phone; ?> </td>
+      <td> <?php echo $product-> address; ?></td>
+       <td> <?php echo $product-> qq; ?></td>
+        <td> <?php echo $product-> email; ?></td>
+      <td> <a href="<?php echo $this->url(array("controller"=>"supplier","action"=>"edit","id"=>$product->supplier_id)); ?>">Update</a>
+           <a href="<?php echo $this->url(array("controller"=>"supplier","action"=>"delete","id"=>$product->supplier_id)); ?>">Delete</a>
+      </td>       
+    </tr>
+    <?php endforeach; ?>
+</table>

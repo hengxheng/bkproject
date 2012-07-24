@@ -23,7 +23,7 @@ class Application_Model_DbTable_Supplier extends Zend_Db_Table_Abstract
         $this -> insert ($data);
     }
     
-    public function editSupplier($id, $supplier_name, $contact_name, $phone, $address, $qq, $email){
+    public function updateSupplier($id, $supplier_name, $contact_name, $phone, $address, $qq, $email){
         $data = array (
             "supplier_name" => $supplier_name,
             "contact_name" => $contact_name,
