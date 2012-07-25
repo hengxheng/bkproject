@@ -11,6 +11,12 @@
         <?php echo $this->headMeta(); ?>
         <?php echo $this->headTitle(); ?>
         <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/site.css'); ?>
+        <?php echo $this->jQuery()
+	->setVersion('1.5.1')
+	->setUiVersion('1.8.11')
+	->enable()
+	->uiEnable();
+        ?>
     </head>
     
     <body>

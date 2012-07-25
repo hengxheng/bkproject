@@ -98,6 +98,7 @@
         <formFile formName="Cookingset"/>
         <formFile formName="Stockup"/>
         <formFile formName="Supplier"/>
+        <formFile formName="Order"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
