@@ -38,5 +38,15 @@ class Application_Model_DbTable_Supplier extends Zend_Db_Table_Abstract
     public function deleteSupplier($id){
         $this -> delete("supplier_id=".$id);
     }
+    
+    public function allSupplier()
+    {
+        $suppliers = $this -> fetchAll();
+        $supplier_all = array();
+        foreach ($suppliers as $supplier){
+            $supplier_all[$supplier->supplier_id] = $supplier->supplier_name;
+        }
+        return $supplier_all;
+    }
 }
 

@@ -17,7 +17,7 @@ class FinController extends Zend_Controller_Action
     {
         $products = new Application_Model_DbTable_Fin();
          $list = $products -> fetchAll();
-         $this -> view -> list = $list;
+         $this -> view -> all = $list;
     }
 
     public function addAction()
@@ -29,7 +29,7 @@ class FinController extends Zend_Controller_Action
         if ($this -> getRequest()-> isPost()) {
             $formData = $this-> getRequest() -> getPost();
             if ($form -> isValid($formData)){
-          //      $product_category_id = $form -> getValue('product_category_id');
+                $product_category_id = "2";
                 $product_name = $form -> getValue('product_name');
                 $item_code = $form -> getValue('item_code');
                 $size = $form -> getValue('size');
@@ -39,7 +39,7 @@ class FinController extends Zend_Controller_Action
                 
                 
                 $fin = new Application_Model_DbTable_Fin();
-                $fin -> addFin( '2', $item_code, $product_name, $images, $size, $weight, $price);
+                $fin -> addFin( $product_category_id , $item_code, $product_name, $images, $size, $weight, $price);
                 $this -> _helper -> redirector('list');
             }
             else{
