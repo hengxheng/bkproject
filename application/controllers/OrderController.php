@@ -41,14 +41,16 @@ class OrderController extends Zend_Controller_Action
 
         $id = $this->_getParam('id', null);
         
-        $product_form = new Zend_Form();
-        $product_form -> addElement("select", "category_".$id);
+        $content = "<tr>";
         
-        $product_form -> addElement("select","product_name_".$id)
-
+        $category = new Zend_Form_Element_Select();
+        
+        $product_name = new Zend_Form_Element_Select();
         $element = new Zend_Form_Element_Text("newName".$id);
         $element->setRequired(true)->setLabel('Name');
-
+      
+        
+        $content += "<tr>";
         $this->view->field = $element->__toString();
     }
 }
