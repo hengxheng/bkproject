@@ -41,17 +41,47 @@ class OrderController extends Zend_Controller_Action
 
         $id = $this->_getParam('id', null);
         
-        $content = "<tr>";
         
-        $category = new Zend_Form_Element_Select();
+        $category_db = new Application_Model_DbTable_ProductsCategory();
+        $category_list = $category_db ->showCategory();
         
-        $product_name = new Zend_Form_Element_Select();
-        $element = new Zend_Form_Element_Text("newName".$id);
-        $element->setRequired(true)->setLabel('Name');
+        
+        $category = new Zend_Form_Element_Select('category_new'.$id);
+        $category ->setBelongsTo($id)
+                  ->addMultiOptions($category_list)
+                  ->setDecorators(array(
+                       'ViewHelper',
+                       'Errors',
+                       array(array('data' => 'HtmlTag'), array('tag' => 'td', 'class' => 'element'))));
+        
+        $product_name = new Zend_Form_Element_Select('product_name_new'.$id);
+        $product_name -> setBelongsto($id)
+                ->setDecorators(array(
+                       'ViewHelper',
+                       'Errors',
+                       array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
+        
+        $quantity = new Zend_Form_Element_Text('quantity_new'.$id);
+        $quantity ->setBelongsTo($id)
+                ->setDecorators(array(
+                       'ViewHelper',
+                       'Errors',
+                       array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
+        
+        $packaging = new Zend_Form_Element_Text('packaging_new'.$id);
+        $packaging -> setBelongsTo($id)
+                ->setDecorators(array(
+                       'ViewHelper',
+                       'Errors',
+                       array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
+        
+        
+//        $element = new Zend_Form_Element_Text("newName".$id);
+//        $element->setRequired(true)->setLabel('Name');
       
         
-        $content += "<tr>";
-        $this->view->field = $element->__toString();
+        $content = $category -> __toString().$product_name -> __toString().$quantity -> __toString().$packaging -> __toString();
+        $this->view->field = $content;
     }
 }
 

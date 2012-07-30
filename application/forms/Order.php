@@ -69,25 +69,25 @@ class Application_Form_Order extends Zend_Form
         $this->addElement('text','deposit',array(
             'label' => 'Deposit:',
             'filter' => 'Int',
-            'order' => 5,
+            'order' => 4,
         ));
         
         $this -> addElement('text','finalpayment',array(
             'label' => 'Final Payment:',
             'filter' => 'Int',
-            'order' => 6,
+            'order' => 5,
         ));
         
         $this -> addElement('text','freight',array(
             'label' => 'Freight:',
             'filter' => 'Int', 
-            'order' => 7,
+            'order' => 6,
         ));
         
         $this -> addElement('text','localfee',array(
             'label' => 'Local Fee:',
             'filter' => 'Int',            
-            'order' => 8,
+            'order' => 7,
         ));
         
         
@@ -105,16 +105,66 @@ class Application_Form_Order extends Zend_Form
 //                ),'Form'
 //            ));
         
+        $category_db = new Application_Model_DbTable_ProductsCategory();
+        $category_list = $category_db ->showCategory();
+        
+        $category = new Zend_Form_Element_Select('category');
+        $category ->setBelongsTo("0")
+                  ->addMultiOptions($category_list)
+                  ->setDecorators(array(
+                       'ViewHelper',
+                       'Errors',
+                       array(array('data' => 'HtmlTag'), array('tag' => 'td', 'class' => 'element'))));
+        
+        $product_name = new Zend_Form_Element_Select('product_name');
+        $product_name -> setBelongsto("0")
+                ->setDecorators(array(
+                       'ViewHelper',
+                       'Errors',
+                       array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
+        
+        $quantity = new Zend_Form_Element_Text('quantity');
+        $quantity ->setBelongsTo("0")
+                ->setDecorators(array(
+                       'ViewHelper',
+                       'Errors',
+                       array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
+        
+        $packaging = new Zend_Form_Element_Text('packaging');
+        $packaging -> setBelongsTo("0")
+                ->setDecorators(array(
+                       'ViewHelper',
+                       'Errors',
+                       array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
+        
+       
+        $this -> addDisplayGroup(array($category,$product_name,$quantity,$packaging),'ordered_product');
+        $this -> addDisplayGroupPrefixPath('ZFExt_Form_Decorator','ZFExt/Form/Decorator/','Decorator');
+        $this -> setDisplayGroupDecorators( array(
+                  'FormElements',array(
+                  'SimpleTable',array(
+                      'columns'=> array(
+                          'Category',
+                          'Product',
+                          'Quantity',
+                          'Package'),
+                      'class'=> 'more_product',
+                      'id' => 'more_product',
+                      )
+                ),'Form'    
+        ));
+        
+        
         
         $this -> addElement('button','addRow',array(
             'label' => 'Add',
             'decorator' => array( 'ViewHelper', array(array('td'=>'HtmlTay'), array('tag' => 'td', 'colspan' =>3)), array(array('tr'=> 'HtmlTag'), array('tag' => 'tr')) ),
-            'order' => 99,
+            'order' => 98,
         ));
         
         $this -> addElement('button', 'removeRow', array(
             'label' => 'Remove',
-            'order' => 98,
+            'order' => 99,
         ));
        
         $this->addElement('submit', 'submit', array(

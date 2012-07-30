@@ -1,13 +1,11 @@
 <?php
 
-class Application_Form_Stockup extends Zend_Form
+class Application_Form_StockUp extends Zend_Form
 {
 
     public function init()
     {
-       $this -> setName("Stock Up Form");
-       
-       
+        /* Form Elements & Other Definitions Here ... */
     }
 
 

@@ -32,7 +32,7 @@ function ajaxAddField() {
       data: {id: id },
       success: function(newElement) {
         // Insert new element before the Add button
-        $("#addRow-label").before(newElement);
+        $("#more_product tr:last").after("<tr>"+newElement+"</tr>");
         // Increment and store id
         $("#row_num").val(++id);
       }
@@ -47,7 +47,7 @@ function removeField() {
  
   // Build the attribute search string.  This will match the last added  dt and dd elements.  
   // Specifically, it matches any element where the id begins with 'newName<int>-'.
-  searchString = '*[id^=newName' + lastId + '-]';
+  searchString = '*[id$=_new' + lastId + ']';
  
   // Remove the elements that match the search string.
   $(searchString).remove()

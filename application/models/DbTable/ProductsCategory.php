@@ -37,5 +37,15 @@ class Application_Model_DbTable_ProductsCategory extends Zend_Db_Table_Abstract
     {
         $this->delete('product_category_id = '.(int)$id);
     }
+    
+    public function showCategory()
+    {
+        $categorys = $this -> fetchAll();
+        $category_list = array();
+        foreach ($categorys as $category){
+            $category_list[$category->product_category_id] = $category->category_name;
+        }
+        return $category_list;  
+    }
 }
 

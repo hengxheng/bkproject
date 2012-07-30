@@ -110,6 +110,7 @@
         <formFile formName="Supplier"/>
         <formFile formName="Order"/>
         <formFile formName="Dynamic"/>
+        <formFile formName="StockUp"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
