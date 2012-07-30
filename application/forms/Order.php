@@ -40,20 +40,20 @@ class Application_Form_Order extends Zend_Form
     {
         $this -> setName("New Order");
         
-        
-        $suppliers = new Application_Model_DbTable_Supplier();
-        $all_suppliers = $suppliers -> allSupplier();
-        
         $this -> addElement('hidden','row_num',array(
             'value'=>1,
         ));
-     
         
+                        
         $this -> addElement('hidden','supply_order_id',array(
             'filter'=> 'Int',
         ));
         
-         $this -> addElement('select','supplier',array(
+        
+        $suppliers = new Application_Model_DbTable_Supplier();
+        $all_suppliers = $suppliers -> allSupplier();        
+        
+        $this -> addElement('select','supplier',array(
             'label' => 'Supplier name' ,
             'multiOptions' => $all_suppliers,
             'order' => 2,

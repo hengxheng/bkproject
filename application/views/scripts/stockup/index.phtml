@@ -1,5 +1,34 @@
-<br /><br />
-<div id="view-content">
-    <?php echo $this -> form; ?>
-	<p>View script for controller <b>Fireplace</b> and script/action name <b>index</b></p>
-</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+         $("#category-element").after("<div id ='products'></div>");
+         $("#category").change(function(){
+          var category_id = $("#category").val();   
+         
+         $.ajax({
+             type: "POST",
+             url: "<?php echo $this -> url(array("controller"=> "stockup", "action"=> "product",)); ?>",
+             data: {id: category_id},
+             success: function(result){
+                 $("#products").html(result);
+             }
+         });
+//        alert(category_id);
+      });
+    });
+   
+</script>
+
+<table class="product_table" width="100%">
+        <tr>
+          <td width="20%" class="listfield">         
+          </td>
+             <td width="1" bgcolor="black"></td> 
+             <td width="80%" class="editfield">
+                   <div id="view-content">
+    
+                   <?php echo $this -> form; ?>
+	
+              </div>
+                    </td>
+        </tr>
+</table>

@@ -53,6 +53,10 @@
     min-height: 400px;
 }
 
+#view-content {
+    padding-left:20px;
+}
+
 #footer {
     background-color:grey;
     width:100%;
