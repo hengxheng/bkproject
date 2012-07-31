@@ -35,6 +35,28 @@ class Application_Form_StockUp extends Zend_Form
         $this -> addElements(array($supplier, $category, $quantity, $date, $submit));
     }
 
+    
+    public function addProductField($name, $value)
+    {
+        $this -> addElement('text',$name, array(
+            'value' => $value,
+        ));
+    }
+    
+    public function preValidation(array $data)
+    { 
+        function findFields($field){
+            if (strpos($field, 'product')!== false){
+                return $field;
+            }
+        }
+        
+        $productField = array_filter(array_keys($data),'findFields');      
+        
+        foreach ($productField as $fieldName){
+            $this -> addProductField($fieldName, $data[$fieldName]);
+        }
+    }
 
 }
 

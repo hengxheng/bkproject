@@ -22,9 +22,9 @@
                 <ul>
                     <li><a href="<?php echo $this->url(array('controller'=>'index','action'=>'product')); ?>">Product Info</a></li>
                     <li><a href="<?php echo $this->url(array('controller'=>'index','action'=>'stockup')); ?>">Stock Up</a></li>
-                    <li>Sales</li>
-                    <li>Stock</li>
-                    <li>Reports</li>
+                    <li><a href="<?php echo $this->url(array('controller'=>'sales','action'=>'index')); ?>">Sales</a></li>
+                    <li><a href="<?php echo $this->url(array('controller'=>'stock','action'=>'index')); ?>">Stock</a></li>
+                    <li><a href="<?php echo $this->url(array('controller'=>'report','action'=>'index')); ?>">Reports</a></li>
                 </ul>
                 <?php echo $this->baseUrl(); ?>
             </div>
@@ -38,9 +38,7 @@
         <div id="footer">
             <p>Storage Management System <br />
             Blackhawk International Pty Dtd </p>
-        </div>
-        
-          
+        </div>        
     </body>   
     
 </html>

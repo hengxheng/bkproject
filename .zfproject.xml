@@ -93,6 +93,15 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="list"/>
         </controllerFile>
+        <controllerFile controllerName="Stock">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Sales">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Report">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Surfboard"/>
@@ -135,6 +144,8 @@
           <dbTableFile dbTableName="Supplier"/>
           <dbTableFile dbTableName="SupplyOrder"/>
           <dbTableFile dbTableName="OrderedProduct"/>
+          <dbTableFile dbTableName="Stockup"/>
+          <dbTableFile dbTableName="Stock"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
@@ -292,6 +303,15 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Stockup">
             <viewScriptFile forActionName="product"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Stock">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Sales">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Report">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

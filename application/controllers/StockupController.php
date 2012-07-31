@@ -13,6 +13,32 @@ class StockupController extends Zend_Controller_Action
     {
         $form = new Application_Form_StockUp();
         $this -> view -> form = $form;
+        
+        
+        if($this -> getRequest() -> isPost()) {
+            
+            $form -> preValidation($_POST);
+              $formData = $this -> getRequest() -> getPost();
+        if($form -> isValid($formData)){
+            $supplier_id = $form -> getValue("supplier");
+            $product_category_id = $form -> getValue("category");
+            $item_code = $form -> getValue("product");
+            $product_quantity = $form -> getValue("quantity");
+            $stockup_date = $form -> getValue("order_date");
+            $supply_order_id = "1";
+            
+            $stock = new Application_Model_DbTable_Stockup();
+            $stock ->stockUp($supplier_id, $item_code, $product_category_id, $product_quantity, $stockup_date, $supply_order_id); 
+            $this -> _helper -> redirector("stockup", "index");
+        }
+        }
+        
+//        $form ->preValidation($_POST);
+        
+      
+        
+        
+//        $this -> view -> form = $form;
     }
 
     public function productAction()
@@ -60,7 +86,7 @@ class StockupController extends Zend_Controller_Action
         $products = $product_db ->fetchAll();
         $products_list = array();
         foreach ($products as $product){
-            $products_list[$product -> product_id] = $product -> product_name.' ('.$product -> item_code.')';
+            $products_list[$product -> item_code] = $product -> product_name.' ('.$product -> item_code.')';
         } 
         
         $product_form = new Zend_Form_Element_Select('product');

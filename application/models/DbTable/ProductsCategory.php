@@ -15,6 +15,14 @@ class Application_Model_DbTable_ProductsCategory extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
     
+    public function getCategoryName($id)
+    {
+        $id = (int)$id;
+        $row = $this -> fetchRow('product_category_id= ', $id);
+        return $row -> category_name;
+    }
+    
+    
     public function addCategory($name)
     {
        $data = array(
@@ -41,7 +49,7 @@ class Application_Model_DbTable_ProductsCategory extends Zend_Db_Table_Abstract
     public function showCategory()
     {
         $categorys = $this -> fetchAll();
-        $category_list = array();
+        $category_list = array("default" => "Select Category");
         foreach ($categorys as $category){
             $category_list[$category->product_category_id] = $category->category_name;
         }
