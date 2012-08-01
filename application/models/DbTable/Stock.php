@@ -18,11 +18,6 @@ class Application_Model_DbTable_Stock extends Zend_Db_Table_Abstract
             $stocks_item['product_category'] = $category;
             $stocks_item['item_code'] = $stock -> item_code;
             $stocks_item['product_quantity'] = $stock -> product_quantity;
-//          $stocks_list  = array(
-//                "product_category" => $category,
-//                "item_code" => $stock -> item_code,
-//                "product_quantity" => $stock -> product_quantity,
-//            );
             $stocks_list[] = $stocks_item;
         }
         return $stocks_list;

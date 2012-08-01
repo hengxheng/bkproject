@@ -7,6 +7,9 @@ class Application_Form_Sales extends Zend_Form
     {
         $this -> setName("Sales");
         
+        $id = new Zend_Form_Element_Hidden("id");
+        $id -> addFilter("Int");
+        
         $category_db = new Application_Model_DbTable_ProductsCategory();
         $category_list = $category_db ->showCategory();     
         $category = new Zend_Form_Element_Select('category');
@@ -34,7 +37,7 @@ class Application_Form_Sales extends Zend_Form
                 -> addFilter("Int")
                 -> setOrder(6);
         
-        $date = new ZendX_JQuery_Form_Element_DatePicker('date');
+        $date = new ZendX_JQuery_Form_Element_DatePicker('date', array('jQueryParams'=> array('dataFormat' => 'yy-mm-dd'),));
         $date -> setLabel("Date")
                 -> setOrder(7);
         
@@ -70,7 +73,7 @@ class Application_Form_Sales extends Zend_Form
         $submit -> setLabel("Submit")
                 -> setOrder(12);
         
-        $this -> addElements (array($category, $quantity, $price, $charged_postage, $real_postage, $date, $dispatch, $source, $status, $comment, $submit));      
+        $this -> addElements (array($id, $category, $quantity, $price, $charged_postage, $real_postage, $date, $dispatch, $source, $status, $comment, $submit));      
     }
     
      public function addProductField($name, $value)

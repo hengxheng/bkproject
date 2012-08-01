@@ -53,8 +53,15 @@
     min-height: 400px;
 }
 
-.main-row td{
+.listfield{
+    width:15%;
+    text-align:center;
+    vertical-align: top;
     min-height: 400px;
+}
+
+.editfield{
+    width:85%;
 }
 
 #view-content {

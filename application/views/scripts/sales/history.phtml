@@ -1,0 +1,26 @@
+<br /><br />
+<div id="view-content">
+    <table class ="product_list">
+        <caption>Sales History </caption>
+        <tr>
+            <td>Category</td>
+            <td>Item Code</td>
+            <td>Quantity</td>
+            <td>Date</td>
+            <td>Status</td>
+            <td>Action</td>
+        </tr>
+        
+        <?php foreach ($this -> history as $item): ?>
+        <tr>
+            <td><?php echo $item['product_category']; ?></td>
+            <td><?php echo $item['item_code']; ?></td>
+            <td><?php echo $item['product_quantity']; ?></td>
+            <td><?php echo $item['date']; ?></td>
+            <td><?php echo $item['status']; ?></td>
+            <td colspan="2"><a href="<?php echo $this -> url(array("controller"=>"sales","action"=>"update","id"=> $item['sales_id'])); ?>">Update</a> &nbsp;<a href="<?php echo $this -> url(array("controller"=>"sales","action"=>"updateSales")); ?>">View</a></td>
+        </tr>
+        
+        <?php endforeach; ?>
+    </table>
+</div>

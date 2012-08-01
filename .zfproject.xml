@@ -98,6 +98,8 @@
         </controllerFile>
         <controllerFile controllerName="Sales">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="history"/>
+          <actionMethod actionName="updateSales"/>
         </controllerFile>
         <controllerFile controllerName="Report">
           <actionMethod actionName="index"/>
@@ -314,6 +316,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Report">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Sales">
+            <viewScriptFile forActionName="history"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Sales">
+            <viewScriptFile forActionName="updateSales"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
