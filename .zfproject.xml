@@ -121,6 +121,7 @@
         <formFile formName="Order"/>
         <formFile formName="Dynamic"/>
         <formFile formName="StockUp"/>
+        <formFile formName="Sales"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>

@@ -1,10 +1,19 @@
 <br /><br />
+
+
 <div id="view-content">
-    <table>
+    <table class ="product_list">
         <caption> Stock </caption>
-        <tr> <td>Category</td></tr>
+        <tr><td>Category</td><td>Item Code</td><td>Quantity</td></tr>
+        <?php foreach ($this -> stocks as $stock) : ?>
         
-        <tr></tr>
+        <tr>
+            <td><?php echo $stock ['product_category']; ?> </td>
+            <td><?php echo $stock ['item_code'] ; ?></td>
+            <td><?php echo $stock ['product_quantity'] ; ?> </td>
         </tr>
+        
+        <?php endforeach; ?>
+        
     </table>
 </div>

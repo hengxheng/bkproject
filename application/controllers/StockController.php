@@ -12,7 +12,7 @@ class StockController extends Zend_Controller_Action
     {
         $stock_records = new Application_Model_DbTable_Stock();
         
-        $stocks = $stock_records -> fetchAll();
+        $stocks = $stock_records ->allStock();
         
         $this -> view -> stocks = $stocks;
     }

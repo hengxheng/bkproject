@@ -18,8 +18,11 @@ class Application_Model_DbTable_ProductsCategory extends Zend_Db_Table_Abstract
     public function getCategoryName($id)
     {
         $id = (int)$id;
-        $row = $this -> fetchRow('product_category_id= ', $id);
-        return $row -> category_name;
+        $query = "SELECT category_name FROM products_category WHERE product_category_id = '".$id."'";
+        $row = $this ->getAdapter() -> query ($query);
+//        $row = $this -> fetchRow('product_category_id= ', $id);
+        $category = $row ->fetch();
+        return $category['category_name'];
     }
     
     
