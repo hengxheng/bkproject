@@ -29,7 +29,7 @@ class StockupController extends Zend_Controller_Action
             
             $stock = new Application_Model_DbTable_Stockup();
             $stock ->stockUp($supplier_id, $item_code, $product_category_id, $product_quantity, $stockup_date, $supply_order_id); 
-            $this -> _helper -> redirector("stockup", "index");
+            $this -> _helper -> redirector("index","stock");
         }
         }
         

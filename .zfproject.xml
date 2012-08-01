@@ -147,6 +147,7 @@
           <dbTableFile dbTableName="OrderedProduct"/>
           <dbTableFile dbTableName="Stockup"/>
           <dbTableFile dbTableName="Stock"/>
+          <dbTableFile dbTableName="Sales"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
