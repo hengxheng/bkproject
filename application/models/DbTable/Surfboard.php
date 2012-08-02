@@ -15,8 +15,6 @@ class Application_Model_DbTable_Surfboard extends Zend_Db_Table_Abstract
     public function searchProductByCode($code)
     {
         $item_code = $code;
-//        $query = "SELECT * FROM surfboard WHERE item_code = '". $code."'";
-//        $row = $this -> getAdapter() -> query($query);
         $row = $this -> fetchRow('item_code = "'.$item_code.'"');
         return $row -> toArray();
     }

@@ -45,8 +45,9 @@ class FinController extends Zend_Controller_Action
             else{
                 $form->populate($formData);
             }                    
-      }
+        }
     }
+
     public function editAction()
     {
        $form = new Application_Form_Fin();
@@ -84,7 +85,7 @@ class FinController extends Zend_Controller_Action
         
       } 
     }
-    
+
     public function deleteAction()
     {
          if($this -> getRequest() -> isPost()) {
@@ -103,8 +104,20 @@ class FinController extends Zend_Controller_Action
         } 
     }
 
+    public function viewAction()
+    {
+       $code = $this -> _getParam('code',0);
+
+       $product_db = new Application_Model_DbTable_Fin();
+       $product = $product_db ->searchProductByCode($code);
+       
+       $this -> view -> product = $product;
+    }
+
 
 }
+
+
 
 
 

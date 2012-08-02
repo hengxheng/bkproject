@@ -112,6 +112,16 @@ class TableController extends Zend_Controller_Action
             $this -> view -> product = $product -> getProduct($id);
         }
     }
+    
+       public function viewAction()
+    {
+       $code = $this -> _getParam('code',0);
+
+       $product_db = new Application_Model_DbTable_FoldedTable();
+       $product = $product_db ->searchProductByCode($code);
+       
+       $this -> view -> product = $product;
+    }
 
 }
 

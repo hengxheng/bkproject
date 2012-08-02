@@ -107,9 +107,18 @@ class CookingsetController extends Zend_Controller_Action
             $product = new Application_Model_DbTable_Cookingset();
             $this -> view -> product = $product -> getProduct($id);
         
-    }
-
+        }
     } 
+    
+    public function viewAction()
+    {
+       $code = $this -> _getParam('code',0);
+
+       $product_db = new Application_Model_DbTable_Cookingset();
+       $product = $product_db ->searchProductByCode($code);
+       
+       $this -> view -> product = $product;
+    }
 
 
 }

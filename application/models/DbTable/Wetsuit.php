@@ -12,6 +12,13 @@ class Application_Model_DbTable_Wetsuit extends Zend_Db_Table_Abstract
         return $row -> toArray();
     }
 
+     public function searchProductByCode($code)
+    {
+        $item_code = $code;
+        $row = $this -> fetchRow('item_code = "'.$item_code.'"');
+        return $row -> toArray();
+    }
+    
     public function addProduct($category_id, $item_code, $product_name, $images, $size, $type, $price)
     {
         $data = array ( 

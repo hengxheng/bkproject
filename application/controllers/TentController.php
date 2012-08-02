@@ -113,5 +113,14 @@ class TentController extends Zend_Controller_Action
         }
     }
 
+       public function viewAction()
+    {
+       $code = $this -> _getParam('code',0);
+
+       $product_db = new Application_Model_DbTable_Tent();
+       $product = $product_db ->searchProductByCode($code);
+       
+       $this -> view -> product = $product;
+    }
 }
 

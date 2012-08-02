@@ -11,7 +11,14 @@ class Application_Model_DbTable_Fin extends Zend_Db_Table_Abstract
         $row = $this-> fetchRow('product_id= '. $id);
         return $row -> toArray();
     }
-
+ 
+     public function searchProductByCode($code)
+    {
+        $item_code = $code;
+        $row = $this -> fetchRow('item_code = "'.$item_code.'"');
+        return $row -> toArray();
+    }
+    
     public function addProduct($category_id, $item_code, $product_name, $images, $size, $weight, $price)
     {
         $data = array ( 

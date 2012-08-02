@@ -29,6 +29,7 @@
           <actionMethod actionName="edit"/>
           <actionMethod actionName="list"/>
           <actionMethod actionName="delete"/>
+          <actionMethod actionName="view"/>
         </controllerFile>
         <controllerFile controllerName="Wetsuit">
           <actionMethod actionName="index"/>
@@ -36,6 +37,7 @@
           <actionMethod actionName="add"/>
           <actionMethod actionName="edit"/>
           <actionMethod actionName="delete"/>
+          <actionMethod actionName="view"/>
         </controllerFile>
         <controllerFile controllerName="Cover">
           <actionMethod actionName="index"/>
@@ -332,6 +334,12 @@
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Surfboard">
+            <viewScriptFile forActionName="view"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Fin">
+            <viewScriptFile forActionName="view"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Wetsuit">
             <viewScriptFile forActionName="view"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>

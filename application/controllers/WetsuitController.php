@@ -47,7 +47,7 @@ class WetsuitController extends Zend_Controller_Action
             else{
                 $form->populate($formData);
             }                    
-      }
+        }
     }
 
     public function editAction()
@@ -84,8 +84,8 @@ class WetsuitController extends Zend_Controller_Action
                 $form -> populate($product->getProduct($id));
                
             }        
-        
-      } 
+        }
+       
     }
 
     public function deleteAction()
@@ -106,8 +106,20 @@ class WetsuitController extends Zend_Controller_Action
         } 
     }
 
+    
+   public function viewAction()
+    {
+       $code = $this -> _getParam('code',0);
+
+       $product_db = new Application_Model_DbTable_Wetsuit();
+       $product = $product_db ->searchProductByCode($code);
+       
+       $this -> view -> product = $product;
+    }
 
 }
+
+
 
 
 
