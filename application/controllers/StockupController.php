@@ -11,10 +11,9 @@ class StockupController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $form = new Application_Form_StockUp();
+        $form = new Application_Form_Stockup();
         $this -> view -> form = $form;
-        
-        
+                
         if($this -> getRequest() -> isPost()) {
             
             $form -> preValidation($_POST);
@@ -32,13 +31,7 @@ class StockupController extends Zend_Controller_Action
             $this -> _helper -> redirector("index","stock");
         }
         }
-        
-//        $form ->preValidation($_POST);
-        
-      
-        
-        
-//        $this -> view -> form = $form;
+
     }
 
     public function productAction()

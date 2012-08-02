@@ -39,7 +39,7 @@ class FinController extends Zend_Controller_Action
                 
                 
                 $fin = new Application_Model_DbTable_Fin();
-                $fin -> addFin( $product_category_id , $item_code, $product_name, $images, $size, $weight, $price);
+                $fin -> addProduct( $product_category_id , $item_code, $product_name, $images, $size, $weight, $price);
                 $this -> _helper -> redirector('list');
             }
             else{
@@ -67,7 +67,7 @@ class FinController extends Zend_Controller_Action
                 $images = $form -> getValue('images');
                               
                 $fin = new Application_Model_DbTable_Fin();
-                $fin -> updateFin($product_id, $product_category_id, $item_code, $product_name, $images, $size, $weight, $price);
+                $fin -> updateProduct($product_id, $product_category_id, $item_code, $product_name, $images, $size, $weight, $price);
                $this -> _helper -> redirector('list');              
             }
             else{
@@ -78,7 +78,7 @@ class FinController extends Zend_Controller_Action
             $id = $this ->_getParam('id',0);
             if ($id > 0){
                 $fin = new Application_Model_DbTable_Fin();
-                $form -> populate($fin->getFin($id));
+                $form -> populate($fin->getProduct($id));
                
             }        
         
@@ -92,14 +92,14 @@ class FinController extends Zend_Controller_Action
             if ($del == 'Yes') {
                 $id = $this ->_getParam('id');
                 $product = new Application_Model_DbTable_Fin();
-                $product -> deleteFin($id);
+                $product -> deleteProduct($id);
             }
             $this -> _helper -> redirector('list');
         }
         else{
             $id = $this ->_getParam('id',0);
             $product = new Application_Model_DbTable_Fin();
-            $this -> view -> product = $product -> getFin($id);
+            $this -> view -> product = $product -> getProduct($id);
         } 
     }
 

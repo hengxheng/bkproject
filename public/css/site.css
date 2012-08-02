@@ -54,6 +54,7 @@
 }
 
 .listfield{
+    font-size:1.5em;
     width:15%;
     text-align:center;
     vertical-align: top;
@@ -84,6 +85,14 @@
     margin: 30px;
 } 
 
+.left-bar {
+    min-height: 500px;
+    
+}
+
+.right-bar {
+    min-height: 500px;
+}
 .product_list td{
     border:solid 1px black;  
 }
@@ -95,3 +104,24 @@ a{
 a:hover{
     background-color:blue;
 }
+
+
+/* begin of product-view-table */
+#product-content {
+    margin:2em;
+}
+
+.product-view {
+    float:left;
+    width:300px;
+    border-collapse: collapse;
+}
+
+.product-view td {
+    border: #000000 solid 1px;
+}
+
+.product-image {
+    float:left;
+}
+/* end of product-view-table */

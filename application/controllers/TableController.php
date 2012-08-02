@@ -18,7 +18,7 @@ class TableController extends Zend_Controller_Action
     {
           $products = new Application_Model_DbTable_FoldedTable();
          $list = $products -> fetchAll();
-         $this -> view -> list = $list;
+         $this -> view -> all = $list;
     }
 
     public function addAction()

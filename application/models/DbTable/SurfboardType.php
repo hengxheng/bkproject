@@ -10,7 +10,7 @@ class Application_Model_DbTable_SurfboardType extends Zend_Db_Table_Abstract
         $types = $this -> fetchAll();
         $typelist = array();
         foreach ($types as $type){
-            $typelist[$type->type_id] = $type->type_name;
+            $typelist[$type->type_name] = $type->type_name;
         }
         return $typelist;
     }

@@ -17,7 +17,7 @@ class WetsuitController extends Zend_Controller_Action
     {
          $products = new Application_Model_DbTable_Wetsuit();
          $list = $products -> fetchAll();
-         $this -> view -> list = $list;
+         $this -> view -> all = $list;
     }
 
     public function addAction()
@@ -39,7 +39,7 @@ class WetsuitController extends Zend_Controller_Action
                 
                 
                 $fin = new Application_Model_DbTable_Wetsuit();
-                $fin -> addWetsuit( '3', $item_code, $product_name, $images, $size, $type, $price);
+                $fin -> addProduct( '3', $item_code, $product_name, $images, $size, $type, $price);
                 
                 $this -> _helper -> redirector('list');
                 
@@ -70,7 +70,7 @@ class WetsuitController extends Zend_Controller_Action
                 $images = $form -> getValue('images');
                               
                 $product = new Application_Model_DbTable_Wetsuit();
-                $product -> updateWetsuit($product_id, $product_category_id, $item_code, $product_name, $images, $size, $type, $price);
+                $product -> updateProduct($product_id, $product_category_id, $item_code, $product_name, $images, $size, $type, $price);
                 $this -> _helper -> redirector('list');               
             }
             else{
@@ -81,7 +81,7 @@ class WetsuitController extends Zend_Controller_Action
             $id = $this ->_getParam('id',0);
             if ($id > 0){
                 $product = new Application_Model_DbTable_Wetsuit();
-                $form -> populate($product->getWetsuit($id));
+                $form -> populate($product->getProduct($id));
                
             }        
         
@@ -95,14 +95,14 @@ class WetsuitController extends Zend_Controller_Action
             if ($del == 'Yes') {
                 $id = $this ->_getParam('id');
                 $product = new Application_Model_DbTable_Wetsuit();
-                $product -> deleteWetsuit($id);
+                $product -> deleteProduct($id);
             }
             $this -> _helper -> redirector('list');
         }
         else{
             $id = $this ->_getParam('id',0);
             $product = new Application_Model_DbTable_Wetsuit();
-            $this -> view -> product = $product -> getWetsuit($id);
+            $this -> view -> product = $product -> getProduct($id);
         } 
     }
 

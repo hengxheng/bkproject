@@ -4,13 +4,19 @@
 <div id="view-content">
     <table class ="product_list">
         <caption> Stock </caption>
-        <tr><td>Category</td><td>Item Code</td><td>Quantity</td></tr>
+        <tr>
+            <td>Category</td>
+            <td>Item Code</td>
+            <td>Quantity</td>
+            <td> </td>
+        </tr>
         <?php foreach ($this -> stocks as $stock) : ?>
         
         <tr>
             <td><?php echo $stock ['product_category']; ?> </td>
             <td><?php echo $stock ['item_code'] ; ?></td>
             <td><?php echo $stock ['product_quantity'] ; ?> </td>
+            <td><a href="<?php echo $this -> url(array("controller"=>$stock['product_category'], "action"=>"view", "code"=> $stock['item_code'],)); ?>">View</a></td>
         </tr>
         
         <?php endforeach; ?>

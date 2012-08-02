@@ -5,14 +5,23 @@ class Application_Model_DbTable_Surfboard extends Zend_Db_Table_Abstract
 
     protected $_name = 'surfboard';
 
-    public function getSurfboard($id)
+    public function getProduct($id)
     {
         $id = (int)$id;
         $row = $this-> fetchRow('product_id= '. $id);
         return $row -> toArray();
     }
     
-    public function addSurfboard($product_category_id, $type, $product_name, $item_code, $price,$images, $size, $length, $width, $thickness, $weight, $nose, $tail, $fin, $bottom, $material)
+    public function searchProductByCode($code)
+    {
+        $item_code = $code;
+//        $query = "SELECT * FROM surfboard WHERE item_code = '". $code."'";
+//        $row = $this -> getAdapter() -> query($query);
+        $row = $this -> fetchRow('item_code = "'.$item_code.'"');
+        return $row -> toArray();
+    }
+    
+    public function addProduct($product_category_id, $type, $product_name, $item_code, $price,$images, $size, $length, $width, $thickness, $weight, $nose, $tail, $fin, $bottom, $material)
     {
         $data = array (
            'product_category_id' => $product_category_id,
@@ -35,7 +44,7 @@ class Application_Model_DbTable_Surfboard extends Zend_Db_Table_Abstract
         $this -> insert ($data);
     }
     
-    public function updateSurfboard($id, $product_category_id, $type, $product_name, $item_code, $price,$images, $size, $length, $width, $thickness, $weight, $nose, $tail, $fin, $bottom, $material)
+    public function updateProduct($id, $product_category_id, $type, $product_name, $item_code, $price,$images, $size, $length, $width, $thickness, $weight, $nose, $tail, $fin, $bottom, $material)
     {
         $data = array(
             'product_category_id' => $product_category_id,
@@ -59,7 +68,7 @@ class Application_Model_DbTable_Surfboard extends Zend_Db_Table_Abstract
         $this -> update($data, 'product_id='.(int)$id);
     }
     
-    public function deleteSurfboard($id)
+    public function deleteProduct($id)
     {
         $this -> delete('product_id='.(int)$id);
     }

@@ -20,18 +20,20 @@
 
 <table class="product_table" width="100%">
         <tr class ="main-row">
-          <td width="20%" class="listfield">         
+          <td width="20%" class="listfield">  
+              <div class="left-bar"></div>
           </td>
              <td width="1" bgcolor="black"></td> 
              <td width="80%" class="editfield">
+                 <div class="right-bar">
                    <div id="view-content">
     
                    <?php echo $this -> form; ?>
                        <?php echo $this -> category; ?>
                        <?php echo $this -> product; ?>
                        <?php echo $this -> date; ?>
-	
-              </div>
+                   </div>
+                 </div>
              </td>
         </tr>
 </table>

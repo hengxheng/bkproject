@@ -1,23 +1,21 @@
 <?php
 
-class Application_Form_Sales extends Zend_Form
+class Application_Form_SalesUpdate extends Zend_Form
 {
 
     public function init()
     {
-        $this -> setName("Sales");
+        $this -> setName("Sales Update");
         
-        $id = new Zend_Form_Element_Hidden("id");
+        $id = new Zend_Form_Element_Hidden("sales_id");
         $id -> addFilter("Int");
         
-        $category_db = new Application_Model_DbTable_ProductsCategory();
-        $category_list = $category_db ->showCategory();     
-        $category = new Zend_Form_Element_Select('category');
+          
+        $category = new Zend_Form_Element_Text('product_category_id');
         $category -> setLabel("Category")
-                  -> addMultiOptions($category_list)
                   -> setOrder(1);
         
-        $quantity = new Zend_Form_Element_Text('quantity');
+        $quantity = new Zend_Form_Element_Text('product_quantity');
         $quantity -> setLabel("Quantity")
                   -> addFilter("Int")
                   -> setOrder(3);
@@ -97,6 +95,7 @@ class Application_Form_Sales extends Zend_Form
             $this -> addProductField($fieldName, $data[$fieldName]);
         }
     }
+
 
 
 }

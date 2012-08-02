@@ -83,13 +83,11 @@ class SalesController extends Zend_Controller_Action
         else{
             $id = $this ->_getParam('id',0);
             if ($id > 0){
-                $product = new Application_Model_DbTable_Sales();
-                $form -> populate($product->getSales($id));               
+                $sales = new Application_Model_DbTable_Sales();
+                $form -> populate($sales->getSales($id));               
             }             
       } 
     }
-
-
 }
 
 

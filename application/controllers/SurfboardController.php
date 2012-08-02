@@ -17,7 +17,7 @@ class SurfboardController extends Zend_Controller_Action
     {
          $products = new Application_Model_DbTable_Surfboard();
          $list = $products -> fetchAll();
-         $this -> view -> list = $list;
+         $this -> view -> all = $list;
     }
 
     public function addAction()
@@ -50,7 +50,7 @@ class SurfboardController extends Zend_Controller_Action
                 $material = $form -> getValue('material');
                 
                 $surfboard = new Application_Model_DbTable_Surfboard();
-                $surfboard -> addSurfboard('1', $type, $product_name, $item_code, $price,$images, $size, $length, $width, $thickness, $weight, $nose, $tail, $fin, $bottom, $material);
+                $surfboard -> addProduct('1', $type, $product_name, $item_code, $price,$images, $size, $length, $width, $thickness, $weight, $nose, $tail, $fin, $bottom, $material);
                   
                 $this -> _helper -> redirector('list','surfboard');
                 
@@ -90,7 +90,7 @@ class SurfboardController extends Zend_Controller_Action
                 $material = $form -> getValue('material');
                 
                 $surfboard = new Application_Model_DbTable_Surfboard();
-                $surfboard -> updateSurfboard($product_id,$product_category_id, $type, $product_name, $item_code, $price,$images, $size, $length, $width, $thickness, $weight, $nose, $tail, $fin, $bottom, $material);
+                $surfboard -> updateProduct($product_id,$product_category_id, $type, $product_name, $item_code, $price,$images, $size, $length, $width, $thickness, $weight, $nose, $tail, $fin, $bottom, $material);
                 $this -> _helper -> redirector('list','surfboard');
                 
             }
@@ -102,7 +102,7 @@ class SurfboardController extends Zend_Controller_Action
             $id = $this ->_getParam('id',0);
             if ($id > 0){
                 $surfboard = new Application_Model_DbTable_Surfboard();
-                $form -> populate($surfboard->getSurfboard($id));
+                $form -> populate($surfboard->getProduct($id));
             }
         }
 
@@ -115,19 +115,32 @@ class SurfboardController extends Zend_Controller_Action
             if ($del == 'Yes') {
                 $id = $this ->_getParam('id');
                 $surfboard = new Application_Model_DbTable_Surfboard();
-                $surfboard -> deleteSurfboard($id);
+                $surfboard -> deleteProduct($id);
             }
             $this -> _helper -> redirector('list','surfboard');
         }
         else{
             $id = $this ->_getParam('id',0);
             $surfboard  = new Application_Model_DbTable_Surfboard();
-            $this -> view -> product = $surfboard -> getSurfboard($id);
+            $this -> view -> product = $surfboard -> getProduct($id);
         } 
+    }
+
+    public function viewAction()
+    {
+       $code = $this -> _getParam('code',0);
+//       $category = $this -> _getParam('category',0);
+       
+       $product_db = new Application_Model_DbTable_Surfboard();
+       $product = $product_db ->searchProductByCode($code);
+       
+       $this -> view -> product = $product;
     }
 
 
 }
+
+
 
 
 

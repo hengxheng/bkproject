@@ -12,7 +12,7 @@ class SupplierController extends Zend_Controller_Action
     {
         $suppliers = new Application_Model_DbTable_Supplier();
         $list = $suppliers ->fetchAll();
-        $this -> view -> list = $list;
+        $this -> view -> all = $list;
     }
 
     public function addAction()

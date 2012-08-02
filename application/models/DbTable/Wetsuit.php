@@ -5,14 +5,14 @@ class Application_Model_DbTable_Wetsuit extends Zend_Db_Table_Abstract
 
     protected $_name = 'wetsuit';
    
-      public function getWetsuit($id)
+      public function getProduct($id)
     {
         $id = (int)$id;
         $row = $this-> fetchRow('product_id= '. $id);
         return $row -> toArray();
     }
 
-    public function addWetsuit($category_id, $item_code, $product_name, $images, $size, $type, $price)
+    public function addProduct($category_id, $item_code, $product_name, $images, $size, $type, $price)
     {
         $data = array ( 
             "product_category_id" => $category_id,
@@ -26,7 +26,7 @@ class Application_Model_DbTable_Wetsuit extends Zend_Db_Table_Abstract
         $this -> insert($data);
     }
     
-    public function updateWetsuit($id, $category_id, $item_code,$product_name, $images, $size, $type, $price)
+    public function updateProduct($id, $category_id, $item_code,$product_name, $images, $size, $type, $price)
     {
          $data = array (            
             "product_category_id" => $category_id,
@@ -41,7 +41,7 @@ class Application_Model_DbTable_Wetsuit extends Zend_Db_Table_Abstract
          $this -> update($data,'product_id ='.(int)$id);        
     }
     
-    public function deleteWetsuit($id)
+    public function deleteProduct($id)
     {
         $this -> delete('product_id='.(int)$id);
     }
