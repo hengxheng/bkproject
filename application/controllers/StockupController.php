@@ -54,7 +54,7 @@ class StockupController extends Zend_Controller_Action
                 $product_db = new Application_Model_DbTable_Cover();
                 break;
             case 5: 
-                $product_db = new Application_Model_DbTable_Cookingset();
+                $product_db = new Application_Model_DbTable_Fireplace();
                 break;
             case 6:
                 $product_db = new Application_Model_DbTable_Tent();
