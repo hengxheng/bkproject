@@ -17,12 +17,13 @@ class Application_Form_Sales extends Zend_Form
                   -> addMultiOptions($category_list)
                   -> setOrder(1);
         
-        $quantity = new Zend_Form_Element_Text('quantity');
+        
+        $quantity = new Zend_Form_Element_Text('product_quantity');
         $quantity -> setLabel("Quantity")
                   -> addFilter("Int")
                   -> setOrder(3);
         
-        $price = new Zend_Form_Element_Text('price');
+        $price = new Zend_Form_Element_Text('sales_price');
         $price -> setLabel("Price")
                -> addFilter("Int")
                 -> setOrder(4);
@@ -45,7 +46,7 @@ class Application_Form_Sales extends Zend_Form
         $dispatch -> setLabel("Dispatch date")
                 -> setOrder(8);
         
-        $source = new Zend_Form_Element_Select('source');
+        $source = new Zend_Form_Element_Select('sales_source');
         $source -> setLabel("Sales source")
                 -> addMultiOptions(array(
                     "ebay" => "ebay",
@@ -54,12 +55,13 @@ class Application_Form_Sales extends Zend_Form
                 ))
                 -> setOrder(9);
         
-        $status = new Zend_Form_Element_Select('status');
+        $status = new Zend_Form_Element_Select('sales_status');
         $status -> setLabel ("Status")
                 -> addMultiOptions(array(
                     "Append" => "Append",
                     "Paid" => "Paid",
-                    "Sent" => "Sent",                 
+                    "Sent" => "Sent",  
+                    "Cancel" => "Cancel",
                 ))
                 -> setOrder(10);
         

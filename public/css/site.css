@@ -56,7 +56,7 @@
 .listfield{
     font-size:1.5em;
     width:15%;
-    text-align:center;
+    text-align:left;
     vertical-align: top;
     min-height: 400px;
 }
@@ -83,7 +83,25 @@
     border-collapse:collapse;
     width: 80%;
     margin: 30px;
+    margin-top: 80px;
 } 
+
+.product_list caption {
+    font-size:2em;
+}
+
+.product_list tr:first-child {
+    background:	#C85A17;
+}
+
+.product_list tr:nth-child(even) {
+    color: white;
+    background-color:#306EFF;
+}
+
+.product_list td{
+    border:solid 1px black;  
+}
 
 .left-bar {
     min-height: 500px;
@@ -93,16 +111,22 @@
 .right-bar {
     min-height: 500px;
 }
-.product_list td{
-    border:solid 1px black;  
-}
 
 a{
     text-decoration: none;
     color:black;
 }
 a:hover{
-    background-color:blue;
+    background-color:#FDD017;
+}
+
+.Add-button {
+    padding:5px 8px 5px 8px;
+    position:absolute;
+    background-color:#306EFF;
+    border:solid black 1px;
+    border-radius:5px;
+    left:800px;
 }
 
 

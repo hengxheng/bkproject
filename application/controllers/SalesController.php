@@ -3,6 +3,14 @@
 class SalesController extends Zend_Controller_Action
 {
 
+    function preDispatch()
+    {
+        $auth = Zend_Auth::getInstance();
+        if (!$auth->hasIdentity()) {
+            $this->_helper -> redirector('index','login');
+        }
+    }
+    
     public function init()
     {
         /* Initialize action controller here */
@@ -19,32 +27,30 @@ class SalesController extends Zend_Controller_Action
             $formData = $this -> getRequest() -> getPost();
             if($form -> isValid($formData)){
 
-                $product_category_id = $form -> getValue("category");
+                $product_category_id = $form -> getValue("product_category_id");
                 $item_code = $form -> getValue("product");
-                $product_quantity = $form -> getValue("quantity");
-                $sales_price = $form -> getValue("price");
+                $product_quantity = $form -> getValue("product_quantity");
+                $sales_price = $form -> getValue("sales_price");
                 $charged_postage = $form -> getValue("charged_postage");
                 $real_postage = $form -> getValue("real_postage");
                 $date = $form -> getValue("date");
                 $dispatch_date = $form -> getValue("dispatch_date");
                 $buyer_id = "1";
-                $sales_source = $form -> getValue("source");
-                $sales_status = $form -> getValue("status");
+                $sales_source = $form -> getValue("sales_source");
+                $sales_status = $form -> getValue("sales_status");
                 $comment = $form -> getValue("comment");
 
                 $sales = new Application_Model_DbTable_Sales();
                 $sales ->addSales($item_code, $product_category_id, $product_quantity, $sales_price, $charged_postage, $date, $dispatch_date, $real_postage, $buyer_id, $sales_source, $sales_status, $comment); 
-                $this -> _helper -> redirector("index", "stock");
+                $this -> _helper -> redirector("history");
             }
-        }
+        } 
     }
 
     public function historyAction()
     {
           $sales = new Application_Model_DbTable_Sales();
-          $sales_history = $sales ->viewHistory();
-          
-          
+          $sales_history = $sales ->viewHistory();         
           $this -> view -> history = $sales_history;
           
     }
@@ -59,17 +65,17 @@ class SalesController extends Zend_Controller_Action
             $formData = $this-> getRequest() -> getPost();
             if ($form -> isValid($formData)){  
                 $id = $form -> getValue("id");
-                $product_category_id = $form -> getValue("category");
+                $product_category_id = $form -> getValue("product_category_id");
                 $item_code = $form -> getValue("product");
-                $product_quantity = $form -> getValue("quantity");
-                $sales_price = $form -> getValue("price");
+                $product_quantity = $form -> getValue("product_quantity");
+                $sales_price = $form -> getValue("sales_price");
                 $charged_postage = $form -> getValue("charged_postage");
                 $real_postage = $form -> getValue("real_postage");
                 $date = $form -> getValue("date");
                 $dispatch_date = $form -> getValue("dispatch_date");
                 $buyer_id = "1";
-                $sales_source = $form -> getValue("source");
-                $sales_status = $form -> getValue("status");
+                $sales_source = $form -> getValue("sales_source");
+                $sales_status = $form -> getValue("sales_status");
                 $comment = $form -> getValue("comment");
                               
                 $product = new Application_Model_DbTable_Sales();
@@ -88,7 +94,21 @@ class SalesController extends Zend_Controller_Action
             }             
       } 
     }
+
+    public function viewAction()
+    {
+        $id = $this ->_getParam("id",0);
+        $sales_db  = new Application_Model_DbTable_Sales();
+        $sales = $sales_db ->getSales($id);
+        
+        $this -> view -> item = $sales;
+        
+    }
+
+
 }
+
+
 
 
 

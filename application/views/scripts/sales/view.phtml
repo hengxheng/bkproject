@@ -1,0 +1,23 @@
+<script>
+  $(document).ready(function(){
+      $(".product-view tr:even").css("color", "white");
+      $(".product-view tr:even").css("background-color", "grey");
+  });
+</script>
+<div id="product-content">
+	<?php // Zend_Debug::dump($this -> item) ; 
+                 $sales = $this -> item; ?>
+    <h1>Sales Record</h1>
+    <table class ="product-view">
+        <tr><td>Item Code</td><td><?php echo $sales['item_code']; ?></td></tr>
+        <tr><td>Quantity</td><td><?php echo $sales['product_quantity']; ?></td></tr>
+        <tr><td>Sales Price</td><td><?php echo $sales['sales_price']; ?></td></tr>
+        <tr><td>Sales Date</td><td><?php echo $sales['date']; ?></td>
+        <tr><td>Charged Postage</td><td><?php echo $sales['charged_postage']; ?></td></tr>
+        <tr><td>Real Postage</td><td><?php echo $sales['real_postage']; ?></td></tr>
+        <tr><td>Dispatch Date</td><td><?php echo $sales['dispatch_date']; ?></td></tr>
+        <tr><td>Sales Resource</td><td><?php echo $sales['sales_source']; ?></td></tr>
+        <tr><td>Sales Status</td><td><?php echo $sales['sales_status']; ?></td></tr>
+        <tr><td>Comment</td><td><?php echo $sales['comment']; ?></td></tr>
+    </table>   
+</div>

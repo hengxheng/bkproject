@@ -103,6 +103,7 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="history"/>
           <actionMethod actionName="updateSales"/>
+          <actionMethod actionName="view"/>
         </controllerFile>
         <controllerFile controllerName="Report">
           <actionMethod actionName="index"/>
@@ -340,6 +341,9 @@
             <viewScriptFile forActionName="view"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Wetsuit">
+            <viewScriptFile forActionName="view"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Sales">
             <viewScriptFile forActionName="view"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
