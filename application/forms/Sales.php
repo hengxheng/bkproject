@@ -38,12 +38,18 @@ class Application_Form_Sales extends Zend_Form
                 -> addFilter("Int")
                 -> setOrder(6);
         
-        $date = new ZendX_JQuery_Form_Element_DatePicker('date', array('jQueryParams'=> array('dataFormat' => 'yy-mm-dd'),));
+        $date = new ZendX_JQuery_Form_Element_DatePicker('date');
         $date -> setLabel("Date")
+                ->setJQueryParam('dateFormat','yy-mm-dd')
+                ->setJQueryParam('changeYear','true')
+                ->setJQueryParam('changeMonth','true')
                 -> setOrder(7);
         
         $dispatch = new ZendX_JQuery_Form_Element_DatePicker('dispatch_date');
         $dispatch -> setLabel("Dispatch date")
+                  ->setJQueryParam('dateFormat','yy-mm-dd')
+                ->setJQueryParam('changeYear','true')
+                ->setJQueryParam('changeMonth','true')
                 -> setOrder(8);
         
         $source = new Zend_Form_Element_Select('sales_source');

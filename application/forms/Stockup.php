@@ -25,7 +25,10 @@ class Application_Form_StockUp extends Zend_Form
                   -> setOrder(4);
         
         $date = new ZendX_JQuery_Form_Element_DatePicker('order_date');
-        $date -> setLabel('Stock up date')
+        $date -> setLabel('Stockup date')
+                  ->setJQueryParam('dateFormat','yy-mm-dd')
+                ->setJQueryParam('changeYear','true')
+                ->setJQueryParam('changeMonth','true')
               -> setOrder(5);
         
         $submit = new Zend_Form_Element_Submit('submit');

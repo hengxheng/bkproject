@@ -27,7 +27,7 @@ class SalesController extends Zend_Controller_Action
             $formData = $this -> getRequest() -> getPost();
             if($form -> isValid($formData)){
 
-                $product_category_id = $form -> getValue("product_category_id");
+                $product_category_id = $form -> getValue("category");
                 $item_code = $form -> getValue("product");
                 $product_quantity = $form -> getValue("product_quantity");
                 $sales_price = $form -> getValue("sales_price");
