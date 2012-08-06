@@ -64,6 +64,9 @@ class Application_Form_Order extends Zend_Form
                         'order_date',
                         array('label' => 'Order Date:',
                               'order' => 3,));
+        $date ->setJQueryParam('dateFormat','yy-mm-dd')
+                ->setJQueryParam('changeYear','true')
+                ->setJQueryParam('changeMonth','true');
         $this->addElement($date);
         
         $this->addElement('text','deposit',array(

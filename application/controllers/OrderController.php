@@ -76,10 +76,6 @@ class OrderController extends Zend_Controller_Action
                        array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
         
         
-//        $element = new Zend_Form_Element_Text("newName".$id);
-//        $element->setRequired(true)->setLabel('Name');
-      
-        
         $content = $category -> __toString().$product_name -> __toString().$quantity -> __toString().$packaging -> __toString();
         $this->view->field = $content;
     }

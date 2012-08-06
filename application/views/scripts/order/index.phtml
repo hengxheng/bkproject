@@ -16,6 +16,12 @@ $(document).ready(function() {
           removeField();
       }
     );
+        
+   $("#category").change(
+       function(){
+        alert("new product");
+       $("#product_name").append('<option value="4">another</option>');
+   });
   }
 );
  
