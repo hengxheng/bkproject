@@ -26,19 +26,20 @@ class Application_Model_DbTable_ProductsCategory extends Zend_Db_Table_Abstract
     }
     
     
-    public function addCategory($name)
+    public function addCategory($parent_id,$name)
     {
-       $data = array(
-            'product_category_id' => ' ',
+       $data = array(           
+            'parent_id' => $parent_id,
             'category_name' => $name,
        ); 
        $this->insert($data);
     }
     
-    public function updateCategory($id, $name)
+    public function updateCategory($id, $parent_id, $name)
     {
         $data = array(
             'product_category_id' => $id,
+            'parent_id' => $parent_id,
             'category_name' => $name,
         );
         $this->update($data, 'product_category_id = ',(int)$id);
@@ -52,7 +53,7 @@ class Application_Model_DbTable_ProductsCategory extends Zend_Db_Table_Abstract
     public function showCategory()
     {
         $categorys = $this -> fetchAll();
-        $category_list = array("default" => "Select Category");
+        $category_list = array("0" => "---------------------");
         foreach ($categorys as $category){
             $category_list[$category->product_category_id] = $category->category_name;
         }

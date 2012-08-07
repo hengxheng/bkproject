@@ -121,6 +121,7 @@ class Application_Form_Order extends Zend_Form
         
         $product_name = new Zend_Form_Element_Select('product_name');
         $product_name -> setBelongsto("0")
+                ->addMultiOptions(array(''=>'---------------------'))
                 ->setDecorators(array(
                        'ViewHelper',
                        'Errors',

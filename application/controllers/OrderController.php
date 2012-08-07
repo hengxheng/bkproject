@@ -32,10 +32,12 @@ class OrderController extends Zend_Controller_Action
       
     }
 
-       /**
-    * Ajax action that returns the dynamic form field
-    */
-    public function newfieldAction() {
+    /**
+     * Ajax action that returns the dynamic form field
+     *
+     */
+    public function newfieldAction()
+    {
 
         $this -> _helper -> layout() -> disableLayout();
 
@@ -79,7 +81,61 @@ class OrderController extends Zend_Controller_Action
         $content = $category -> __toString().$product_name -> __toString().$quantity -> __toString().$packaging -> __toString();
         $this->view->field = $content;
     }
+
+    public function addproductAction()
+    {
+        $this -> _helper -> layout() -> disableLayout();
+        $category_id = $this -> _getParam('category',0);
+        
+          switch ($category_id){
+            case 1:              
+                $product_db = new Application_Model_DbTable_Surfboard();
+                break;
+            case 2:
+                $product_db = new Application_Model_DbTable_Fin();
+                break;
+            case 3:
+                $product_db = new Application_Model_DbTable_Wetsuit();
+                break;
+            case 4:
+                $product_db = new Application_Model_DbTable_Cover();
+                break;
+            case 5: 
+                $product_db = new Application_Model_DbTable_Fireplace();
+                break;
+            case 6:
+                $product_db = new Application_Model_DbTable_Tent();
+                break;
+            case 7:
+                $product_db = new Application_Model_DbTable_FoldedTable();
+                break;
+            case 8:
+                $product_db = new Application_Model_DbTable_Umbrela();
+                break;
+            case 9:
+                $product_db = new Application_Model_DbTable_Sleepingbag();
+                break;
+            case 10:
+                $product_db = new Application_Model_DbTable_Cookingset();
+                break;
+            default:
+         
+        }
+        
+        $products = $product_db ->fetchAll();
+ 
+        $html_content = '';
+        foreach ($products as $product){
+            $html_content .= '<option value="'.$product -> item_code.'">'.$product -> product_name.'('.$product -> item_code.')</option>';
+        } 
+        
+        $this -> view -> html_content =  $html_content;
+    }
+
+
 }
+
+
 
 
 

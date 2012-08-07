@@ -149,3 +149,13 @@ a:hover{
     float:left;
 }
 /* end of product-view-table */
+
+.loading {
+    position:absolute;
+    padding:30px;
+    top:500px;
+    left:400px;
+    background-color:#1c94c4;
+    color:#333333;
+    border: #000000 solid 1px;
+}

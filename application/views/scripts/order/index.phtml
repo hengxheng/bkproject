@@ -16,14 +16,25 @@ $(document).ready(function() {
           removeField();
       }
     );
-        
+    
    $("#category").change(
        function(){
-        alert("new product");
-       $("#product_name").append('<option value="4">another</option>');
-   });
-  }
-);
+//        alert("new product");
+       $("body").append('<div class="loading">Loading..</div>');
+       var category_id = $("#category").val();
+       $.ajax({
+           type:"POST",
+           url: "<?php echo $this -> url(array('controller' => 'order', 'action' => 'addproduct', 'format' => 'html')); ?>",
+           data: {category: category_id},
+           success: function(fanhui){
+                 $("#product_name").append(fanhui);
+                 $(".loading").remove();
+                  }
+       });
+     });
+   }
+);    
+
  
 // Get value of id - integer appended to dynamic form field names and ids
 //rowno = $("#row_num").val();
