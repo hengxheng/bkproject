@@ -159,3 +159,8 @@ a:hover{
     color:#333333;
     border: #000000 solid 1px;
 }
+
+.category_list {
+    list-style: none;
+    font-size: 1.2em;
+}

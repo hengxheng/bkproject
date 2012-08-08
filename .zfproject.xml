@@ -115,6 +115,8 @@
         <controllerFile controllerName="Catalog">
           <actionMethod actionName="index"/>
           <actionMethod actionName="createCategory"/>
+          <actionMethod actionName="editcategory"/>
+          <actionMethod actionName="addproduct"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -362,6 +364,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Catalog">
             <viewScriptFile forActionName="createCategory"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Catalog">
+            <viewScriptFile forActionName="editcategory"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Catalog">
+            <viewScriptFile forActionName="addproduct"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

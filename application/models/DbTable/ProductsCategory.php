@@ -8,11 +8,10 @@ class Application_Model_DbTable_ProductsCategory extends Zend_Db_Table_Abstract
     public function getCategory($id)
     {
         $id = (int)$id;
-        $row = $this->fetchRow('id = ', $id);
-        if (!$row) {
-            throw new Exception("Could not find row $id");
-        }
-        return $row->toArray();
+        $query = "SELECT * FROM products_category WHERE product_category_id = '".$id."'";
+        $row = $this ->getAdapter() -> query ($query);
+        
+        return $row ->fetch();
     }
     
     public function getCategoryName($id)
@@ -37,12 +36,9 @@ class Application_Model_DbTable_ProductsCategory extends Zend_Db_Table_Abstract
     
     public function updateCategory($id, $parent_id, $name)
     {
-        $data = array(
-            'product_category_id' => $id,
-            'parent_id' => $parent_id,
-            'category_name' => $name,
-        );
-        $this->update($data, 'product_category_id = ',(int)$id);
+        $id = (int)$id;
+        $query = "UPDATE products_category SET parent_id =" .$parent_id.", category_name ='".$name."' WHERE product_category_id = '".$id."'";
+        $this ->getAdapter() -> query ($query);
     }
     
     public function deleteCategory($id)

@@ -19,12 +19,11 @@ class Application_Form_Categories extends Zend_Form
        $parents = $parents_db ->showCategory();
        
        $parent = new Zend_Form_Element_Select('parent_id');
-       $parent -> setLabel('Parent Category (if it is a top category, dont change)')
+       $parent -> setLabel('Parent Category (if it is a top category, dont pick any category)')
                -> addMultiOptions($parents);
        
        $submit = new Zend_Form_Element_Submit('submit');
-       $submit -> setLabel ('Create')
-               ->setAttrib('id', 'submit');
+       $submit ->setAttrib('id', 'submit');
        
        $this -> addElements(array($product_category_id,$category_name, $parent, $submit));
        
