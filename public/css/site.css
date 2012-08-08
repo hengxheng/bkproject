@@ -154,6 +154,9 @@ a:hover{
 .product-description {
     margin:250px;
     width: 700px;
+    position:absolute;
+    left:-200px;
+    top:400px;
 }
 /* end of product-view-page */
 

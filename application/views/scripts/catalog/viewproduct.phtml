@@ -10,6 +10,12 @@
                   $category = $this -> category;
                   $supplier = $this -> supplier; ?>
     <h1>Product Information</h1>
+    
+    <div class="product-image">
+        <img src="<?php echo $this->baseUrl().'/images/products/'.$product['product_images']; ?>" alt="image" width="400px" height="200px"/>
+    </div>
+    
+    
     <table class ="product-view">
         <tr><td>Product Code</td><td><?php echo $product['product_code']; ?></td></tr>
         <tr><td>Product Name</td><td><?php echo $product['product_name']; ?></td></tr>
@@ -21,12 +27,9 @@
         <tr><td>Manufacturer</td><td><?php echo $supplier; ?></td></tr>
     </table>
     
-    <div class="product-image">
-        <img src="<?php echo $this->baseUrl().'/images/products/'.$product['product_images']; ?>" alt="image" width="400px" height="200px"/>
-    </div>
-    
-    <br />
-    
+    <br /> 
+    <br />  
+    <br />  
     <div class ="product-description">
     <fieldset>
         <legend>Description</legend>

@@ -28,6 +28,32 @@ class Application_Form_Products extends Zend_Form
                       -> addFilter('StringTrim')
                       -> addValidator('NotEmpty');
         
+        $categories_db = new Application_Model_DbTable_ProductsCategory();
+        $categories = $categories_db ->fetchAll();
+        $subcategories = $categories_db ->fetchAll();
+        $category_list = array();
+        foreach ($categories as $category) {
+            if ($category -> parent_id == 0){
+            $category_list[$category -> product_category_id] = $category -> category_name;
+               foreach ($subcategories as $subcategory){
+                   if ($subcategory -> parent_id == $category -> product_category_id){
+                       $category_list[$subcategory -> product_category_id] = '----------'.$subcategory -> category_name;
+                   }
+               }
+            }
+        }
+        
+        $this -> addElement('select','$category_id',array(
+            'label' => 'Cateogory' ,
+            'multiOptions' => $category_list,
+            'order' => 4,
+        ));
+//        $product_category = new Zend_Form_Element_Select($category_id);
+//        
+//        $product_category  ->setLabel('Category')
+//                           ->addMultiOptions($category_list);
+                           
+        
         $product_size = new Zend_Form_Element_Text('product_size');
         $product_size -> setLabel('Product Size')
                         -> setRequired(true)
