@@ -92,7 +92,7 @@ class CatalogController extends Zend_Controller_Action
         if ($this -> getRequest() -> isPost()){
             $formData = $this -> getRequest() -> getPost();
             if ($form -> isValid($formData)){
-                $product_id = $form -> getValue('product_id');
+//                $product_id = $form -> getValue('product_id');
                 $category_id = $form -> getValue('category_id');
                 $product_name = $form -> getValue('product_name');
                 $product_code = $form -> getValue('product_code');
@@ -183,7 +183,20 @@ class CatalogController extends Zend_Controller_Action
 
     public function viewproductAction()
     {
-        // action body
+       $product_id = $this -> _getParam('product_id',0);
+       
+       $product_db = new Application_Model_DbTable_Products();
+       $product = $product_db ->getProduct($product_id);
+       
+       $category_db = new Application_Model_DbTable_ProductsCategory();
+       $category = $category_db -> getCategoryName($product['category_id']);
+       
+       $supplier_db = new Application_Model_DbTable_Supplier();
+       $supplier = $supplier_db -> getSupplier($product['supplier']);
+              
+       $this -> view -> product = $product;
+       $this -> view -> category = $category;
+       $this -> view -> supplier = $supplier['supplier_name'];
     }
 
 

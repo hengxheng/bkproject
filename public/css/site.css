@@ -130,7 +130,7 @@ a:hover{
 }
 
 
-/* begin of product-view-table */
+/* begin of product-view-page */
 #product-content {
     margin:2em;
 }
@@ -139,6 +139,7 @@ a:hover{
     float:left;
     width:300px;
     border-collapse: collapse;
+    margin:2em;
 }
 
 .product-view td {
@@ -147,8 +148,14 @@ a:hover{
 
 .product-image {
     float:left;
+    display:inline;
 }
-/* end of product-view-table */
+
+.product-description {
+    margin:250px;
+    width: 700px;
+}
+/* end of product-view-page */
 
 .loading {
     position:absolute;
@@ -164,3 +171,4 @@ a:hover{
     list-style: none;
     font-size: 1.2em;
 }
+
