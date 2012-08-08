@@ -11,8 +11,6 @@ class Application_Form_Products extends Zend_Form
         $product_id = new Zend_Form_Element_Hidden('product_id');
         $product_id -> addFilter("Int");
         
-        $category_id = new Zend_Form_Element_Hidden('category_id');
-        $category_id -> addFilter("Int");
         
         $product_name = new Zend_Form_Element_Text('product_name');
         $product_name -> setLabel('Product Name')
@@ -43,10 +41,10 @@ class Application_Form_Products extends Zend_Form
             }
         }
         
-        $this -> addElement('select','$category_id',array(
+        $this -> addElement('select','category_id',array(
             'label' => 'Cateogory' ,
             'multiOptions' => $category_list,
-            'order' => 4,
+            'order' => 3,
         ));
 //        $product_category = new Zend_Form_Element_Select($category_id);
 //        
@@ -93,7 +91,7 @@ class Application_Form_Products extends Zend_Form
         
          $submit = new Zend_Form_Element_Submit('submit');
          
-         $this -> addElements (array( $product_id, $category_id, $product_name, $product_code, $product_size, $product_weight, $product_images, $product_price, $product_cost, $supplier, $description, $submit));
+         $this -> addElements (array( $product_id, $product_name, $product_code, $product_size, $product_weight, $product_images, $product_price, $product_cost, $supplier, $description, $submit));
          
     }
 
