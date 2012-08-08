@@ -1,0 +1,38 @@
+<div id="view-content">
+   <div class="Add-button">
+          <a href="<?php echo $this->url(array('controller' =>'catalog', 'action'=>'addproduct')); ?>">Add</a>
+   </div>
+    
+   <table class="product_list">
+    <caption>
+        Products    
+    </caption>
+    <tr>
+       <td> Product Name </td>
+       <td> Product Code </td>
+       <td> Product Size </td>
+       <td> Product Weight </td>
+       <td> Product Price </td>
+       <td> Product Cost </td>
+       <td colspan ="2"> Action </td>
+    </tr>
+    
+    <?php foreach ( $this -> products as $product) : ?>
+    <tr>
+      <td> <?php echo $product-> product_name; ?> </td>
+      <td> <?php echo $product-> product_code; ?></td>
+      <td> <?php echo $product-> product_size; ?> </td>
+      <td> <?php echo $product-> product_weight; ?> </td>
+      <td> <?php echo $product-> product_price; ?> </td>
+      <td> <?php echo $product-> product_cost; ?> </td>
+      <td> 
+           <a href="<?php echo $this->url(array("controller" => "catalog", "action" => "viewproduct", "product_id" => $product->product_id)); ?>">View</a>
+           &nbsp;
+           <a href="<?php echo $this->url(array("controller" => "catalog", "action" => "editproduct", "product_id" => $product->product_id)); ?>">Update</a>
+           &nbsp;
+           <a href="<?php echo $this->url(array("controller" => "catalog", "action" => "deleteproduct", "product_id" => $product->product_id)); ?>">Delete</a>
+      </td>       
+    </tr>
+    <?php endforeach; ?>
+   </table>
+</div>

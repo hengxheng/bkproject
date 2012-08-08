@@ -1,0 +1,13 @@
+<div id="view-content">
+
+    <p> Delete <?php echo $this -> escape($this -> product['product_name'] ); ?> ( <?php echo $this -> escape( $this -> product['product_code']); ?> )? </p>
+
+    <form action="<?php echo $this-> url (array("controller"=>"catalog","action"=>"deleteproduct")); ?>" method ="post" >
+        <div>
+            <input type ="hidden" name="id" value="<?php echo $this -> product['product_id']; ?>" />
+            <input type ="submit" name ="del" value ="Yes" />
+            <input type ="submit" name ="del" value="No" />
+        </div>
+    </form>
+    
+</div>

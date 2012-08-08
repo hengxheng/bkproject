@@ -85,11 +85,117 @@ class CatalogController extends Zend_Controller_Action
 
     public function addproductAction()
     {
+        $form = new Application_Form_Products();
+        $form -> submit -> setLabel("Add");
+        $this -> view -> form = $form;
+        
+        if ($this -> getRequest() -> isPost()){
+            $formData = $this -> getRequest() -> getPost();
+            if ($form -> isValid($formData)){
+                $product_id = $form -> getValue('product_id');
+                $category_id = $form -> getValue('category_id');
+                $product_name = $form -> getValue('product_name');
+                $product_code = $form -> getValue('product_code');
+                $product_size = $form -> getValue('product_size');
+                $product_weight = $form -> getValue('product_weight');
+                $product_images = $form -> getValue('product_images');
+                $product_price = $form -> getValue('product_price');
+                $product_cost = $form -> getValue('product_cost');
+                $supplier = $form -> getValue('supplier');
+                $description = $form -> getValue('description');
+                
+                $products_db = new Application_Model_DbTable_Products();
+                $products_db ->addProduct($category_id, $product_name, $product_code, $product_size, $product_weight, $product_images, $product_price, $product_cost, $supplier, $description);               
+           
+                $this -> _helper -> redirector('listproduct'); 
+           }
+        }
+    }
+
+    public function editproductAction()
+    {
+            $form = new Application_Form_Products();
+            $form -> submit -> setLabel("Update");
+            $this -> view -> form = $form;
+            
+            if ($this -> getRequest() -> isPost()){
+            $formData = $this -> getRequest() -> getPost();
+                if ($form -> isValid($formData)){
+                    $product_id = $form -> getValue('product_id');
+                    $category_id = $form -> getValue('category_id');
+                    $product_name = $form -> getValue('product_name');
+                    $product_code = $form -> getValue('product_code');
+                    $product_size = $form -> getValue('product_size');
+                    $product_weight = $form -> getValue('product_weight');
+                    $product_images = $form -> getValue('product_images');
+                    $product_price = $form -> getValue('product_price');
+                    $product_cost = $form -> getValue('product_cost');
+                    $supplier = $form -> getValue('supplier');
+                    $description = $form -> getValue('description');
+
+                    
+                    $products_db = new Application_Model_DbTable_Products();
+                    if ($product_images != ''){
+                    $products_db -> updateProduct($product_id, $category_id, $product_name, $product_code, $product_size, $product_weight, $product_images, $product_price, $product_cost, $supplier, $description);               
+                    }
+                    else {
+                    $products_db ->updateProductNoImage($product_id, $category_id, $product_name, $product_code, $product_size, $product_weight, $product_price, $product_cost, $supplier, $description);
+                    }
+                    $this -> _helper -> redirector('listproduct'); 
+                 }
+                 else {
+                     $form -> populate($formData);
+                 }
+           }
+           else {
+               $product_id = $this -> _getParam('product_id',0);
+               if ($product_id > 0){
+                   $products_db = new Application_Model_DbTable_Products();
+                   $form -> populate($products_db->getProduct($product_id));
+               }
+           }
+    }
+
+    public function deleteproductAction()
+    {
+        if($this -> getRequest() -> isPost()) {
+            $del = $this -> getRequest() -> getPost('del');
+            if ($del == 'Yes') {
+                 $product_id = $this -> _getParam('product_id',0);
+                 $products_db = new Application_Model_DbTable_Products();
+                 $products_db->deleteProduct($product_id);
+            }
+            $this -> _helper -> redirector('listproduct');
+        }
+        else{
+            $product_id = $this -> _getParam('product_id',0);
+            $products_db = new Application_Model_DbTable_Products();
+            $this -> view -> product = $products_db -> getProduct($product_id);
+        } 
+    }
+
+    public function listproductAction()
+    {
+        $products_db = new Application_Model_DbTable_Products();
+        $products = $products_db -> fetchAll();
+        $this -> view -> products = $products;
+    }
+
+    public function viewproductAction()
+    {
         // action body
     }
 
 
 }
+
+
+
+
+
+
+
+
 
 
 

@@ -117,6 +117,10 @@
           <actionMethod actionName="createCategory"/>
           <actionMethod actionName="editcategory"/>
           <actionMethod actionName="addproduct"/>
+          <actionMethod actionName="editproduct"/>
+          <actionMethod actionName="deleteproduct"/>
+          <actionMethod actionName="listproduct"/>
+          <actionMethod actionName="viewproduct"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -140,6 +144,7 @@
         <formFile formName="Sales"/>
         <formFile formName="SalesUpdate"/>
         <formFile formName="Categories"/>
+        <formFile formName="Products"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -370,6 +375,18 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Catalog">
             <viewScriptFile forActionName="addproduct"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Catalog">
+            <viewScriptFile forActionName="editproduct"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Catalog">
+            <viewScriptFile forActionName="deleteproduct"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Catalog">
+            <viewScriptFile forActionName="listproduct"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Catalog">
+            <viewScriptFile forActionName="viewproduct"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
