@@ -5,12 +5,12 @@ class Application_Form_StockUp extends Zend_Form
 
     public function init()
     {
-        $supplier_db = new Application_Model_DbTable_Supplier();
-        $supplier_list = $supplier_db -> allSupplier();    
-        $supplier = new Zend_Form_Element_Select('supplier');
-        $supplier -> setLabel('Supplier')
-                  -> addMultiOptions($supplier_list)
-                  -> setOrder(1);
+//        $supplier_db = new Application_Model_DbTable_Supplier();
+//        $supplier_list = $supplier_db -> allSupplier();    
+//        $supplier = new Zend_Form_Element_Select('supplier');
+//        $supplier -> setLabel('Supplier')
+//                  -> addMultiOptions($supplier_list)
+//                  -> setOrder(1);
         
         $category_db = new Application_Model_DbTable_ProductsCategory();
         $category_list = $category_db ->showCategory();     
@@ -35,7 +35,7 @@ class Application_Form_StockUp extends Zend_Form
         $submit -> setLabel('Submit')
                 -> setOrder(10);
         
-        $this -> addElements(array($supplier, $category, $quantity, $date, $submit));
+        $this -> addElements(array($category, $quantity, $date, $submit));
     }
 
     

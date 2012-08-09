@@ -22,5 +22,16 @@ class Application_Model_DbTable_Stock extends Zend_Db_Table_Abstract
         }
         return $stocks_list;
     }
+    
+    public function getStock($code)
+    {
+        $select = $this ->select() ->where('item_code = ?', $code);
+//                                   ->limit(1);
+        
+        $row = $this ->fetchAll($select);
+        return $row -> toArray();
+    }
+    
+ 
 }
 

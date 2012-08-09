@@ -112,7 +112,7 @@ class WetsuitController extends Zend_Controller_Action
        $code = $this -> _getParam('code',0);
 
        $product_db = new Application_Model_DbTable_Wetsuit();
-       $product = $product_db ->searchProductByCode($code);
+       $product = $product_db ->getProductByCode($code);
        
        $this -> view -> product = $product;
     }

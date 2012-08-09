@@ -27,19 +27,7 @@ class Application_Form_Products extends Zend_Form
                       -> addValidator('NotEmpty');
         
         $categories_db = new Application_Model_DbTable_ProductsCategory();
-        $categories = $categories_db ->fetchAll();
-        $subcategories = $categories_db ->fetchAll();
-        $category_list = array();
-        foreach ($categories as $category) {
-            if ($category -> parent_id == 0){
-            $category_list[$category -> product_category_id] = $category -> category_name;
-               foreach ($subcategories as $subcategory){
-                   if ($subcategory -> parent_id == $category -> product_category_id){
-                       $category_list[$subcategory -> product_category_id] = '----------'.$subcategory -> category_name;
-                   }
-               }
-            }
-        }
+        $category_list = $categories_db ->showCategory();
         
         $this -> addElement('select','category_id',array(
             'label' => 'Cateogory' ,

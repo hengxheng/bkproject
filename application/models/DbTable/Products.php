@@ -19,6 +19,15 @@ class Application_Model_DbTable_Products extends Zend_Db_Table_Abstract
         return $row -> toArray();
     }
     
+    public function getProductByCategory($category_id)
+    {
+       $select = $this -> select() -> where('category_id = ?',$category_id); 
+       $rows = $this ->fetchAll($select);
+//        $row = $this -> fetchRow('category_id = '.$category_id);
+        return $rows -> toArray();
+
+    }
+    
     public function addProduct($category_id, $product_name, $product_code, $product_size, $product_weight, $product_images, $product_price, $product_cost, $supplier, $description)
     {
         $data = array (

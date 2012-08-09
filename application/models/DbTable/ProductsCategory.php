@@ -48,11 +48,20 @@ class Application_Model_DbTable_ProductsCategory extends Zend_Db_Table_Abstract
     
     public function showCategory()
     {
-        $categorys = $this -> fetchAll();
-        $category_list = array("0" => "---------------------");
-        foreach ($categorys as $category){
-            $category_list[$category->product_category_id] = $category->category_name;
+        $categories = $this ->fetchAll();
+        $subcategories = $this ->fetchAll();
+        $category_list = array('','---------------------');
+        foreach ($categories as $category) {
+            if ($category -> parent_id == 0){
+            $category_list[$category -> product_category_id] = $category -> category_name;
+               foreach ($subcategories as $subcategory){
+                   if ($subcategory -> parent_id == $category -> product_category_id){
+                       $category_list[$subcategory -> product_category_id] = '----------'.$subcategory -> category_name;
+                   }
+               }
+            }
         }
+        
         return $category_list;  
     }
 }

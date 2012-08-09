@@ -16,7 +16,7 @@
             <td><?php echo $stock ['product_category']; ?> </td>
             <td><?php echo $stock ['item_code'] ; ?></td>
             <td><?php echo $stock ['product_quantity'] ; ?> </td>
-            <td><a href="<?php echo $this -> url(array("controller"=>$stock['product_category'], "action"=>"view", "code"=> $stock['item_code'],)); ?>">View</a></td>
+            <td><a href="<?php echo $this -> url(array("controller"=>"stock", "action"=>"viewstock", "code"=> $stock['item_code'],)); ?>">View</a></td>
         </tr>
         
         <?php endforeach; ?>

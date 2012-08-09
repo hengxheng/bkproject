@@ -1,0 +1,43 @@
+<script>
+  $(document).ready(function(){
+      $(".product-view tr:even").css("color", "white");
+      $(".product-view tr:even").css("background-color", "grey");
+  });
+</script>
+<div id="product-content">
+	<?php // Zend_Debug::dump($this -> product) ;
+                  $product = $this -> product;
+                  $category = $this -> category;
+                  $supplier = $this -> supplier;
+                  $quantity = $this -> quantity; ?>
+    <h1>Product Information</h1>
+    
+    <div class="product-image">
+        <img src="<?php echo $this->baseUrl().'/images/products/'.$product['product_images']; ?>" alt="image" width="400px" height="200px"/>
+    </div>
+    
+    
+    <table class ="product-view">
+        <tr><td>Product Code</td><td><?php echo $product['product_code']; ?></td></tr>
+        <tr><td>Product Name</td><td><?php echo $product['product_name']; ?></td></tr>
+        <tr><td>Category</td><td><?php echo $category; ?></td></tr>
+        <tr><td>Price</td><td><?php echo $product['product_price']; ?></td></tr>
+        <tr><td>Cost</td><td><?php echo $product['product_cost']; ?></td></tr>
+        <tr><td>Size</td><td><?php echo $product['product_size']; ?></td></tr>
+        <tr><td>Weight</td><td><?php echo $product['product_weight']; ?></td></tr>
+        <tr><td>Manufacturer</td><td><?php echo $supplier; ?></td></tr>
+        <tr><td>In Stock</td><td><?php echo $quantity; ?></td></tr>
+    </table>
+    
+    <br /> 
+    <br />  
+    <br />  
+    <div class ="product-description">
+    <fieldset>
+        <legend>Description</legend>
+       
+            <?php echo $product['description']; ?>
+        
+    </fieldset>
+    </div>
+</div>
