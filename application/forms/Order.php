@@ -37,7 +37,8 @@ class Application_Form_Order extends Zend_Form
     public function init()
     {
         $this -> setName("New Order");
-        
+        $url = $this-> getView() -> url(array('controller'=>'order','action'=>'orderhistory'));
+        $this -> setAction($url);
         $this -> addElement('hidden','row_num',array(
             'value'=>1,
         ));

@@ -87,6 +87,7 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="newfield"/>
           <actionMethod actionName="newProduct"/>
+          <actionMethod actionName="orderhistory"/>
         </controllerFile>
         <controllerFile controllerName="Forms">
           <actionMethod actionName="index"/>
@@ -387,6 +388,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Catalog">
             <viewScriptFile forActionName="viewproduct"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Order">
+            <viewScriptFile forActionName="orderhistory"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

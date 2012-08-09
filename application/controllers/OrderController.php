@@ -35,6 +35,7 @@ class OrderController extends Zend_Controller_Action
     /**
      * Ajax action that returns the dynamic form field
      *
+     *
      */
     public function newfieldAction()
     {
@@ -48,7 +49,7 @@ class OrderController extends Zend_Controller_Action
         $category_list = $category_db ->showCategory();
         
         
-        $category = new Zend_Form_Element_Select('category_'.$id);
+        $category = new Zend_Form_Element_Select('category_new'.$id);
         $category ->setBelongsTo($id)
                   ->addMultiOptions($category_list)
                   ->setDecorators(array(
@@ -56,7 +57,7 @@ class OrderController extends Zend_Controller_Action
                        'Errors',
                        array(array('data' => 'HtmlTag'), array('tag' => 'td', 'class' => 'element'))));
         
-        $product_name = new Zend_Form_Element_Select('product_name_'.$id);
+        $product_name = new Zend_Form_Element_Select('product_name_new'.$id);
         $product_name -> setBelongsto($id)
                  ->addMultiOptions(array(''=>'------------------'))
                 ->setDecorators(array(
@@ -64,24 +65,21 @@ class OrderController extends Zend_Controller_Action
                        'Errors',
                        array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
         
-        $quantity = new Zend_Form_Element_Text('quantity_'.$id);
+        $quantity = new Zend_Form_Element_Text('quantity_new'.$id);
         $quantity ->setBelongsTo($id)
                 ->setDecorators(array(
                        'ViewHelper',
                        'Errors',
                        array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
         
-        $packaging = new Zend_Form_Element_Text('packaging_'.$id);
+        $packaging = new Zend_Form_Element_Text('packaging_new'.$id);
         $packaging -> setBelongsTo($id)
                 ->setDecorators(array(
                        'ViewHelper',
                        'Errors',
                        array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
         
-//        $content = '<srcipt>
-//                       $("#'.$id.'-category_new'.$id.'").change(
-//                           function(){
-//                           ';
+
         $content = $category -> __toString().$product_name -> __toString().$quantity -> __toString().$packaging -> __toString();
         $this->view->field = $content;
     }
@@ -105,8 +103,51 @@ class OrderController extends Zend_Controller_Action
         $this -> view -> html_content =  $html_content;
     }
 
+    public function orderhistoryAction()
+    {
+        $form = new Application_Form_Order();
+        
+        
+            
+        // Form has not been submitted - pass to view and return
+            if (!$this->getRequest()->isPost()) {
+            $this->view->form = $form;
+            return;
+            }
+ 
+     // Form has been submitted - run data through preValidation()
+             $form->preValidation($_POST);
+   
+     // If the form doesn't validate, pass to view and return
+    if (!$form->isValid($_POST)) {
+      $this->view->form = $form;
+      return;
+    }
+   
+     // Form is valid
+    $this->view->form = $form;
+    
+    
+        if($this ->getRequest() ->isPost()){
+            $result = $this ->getRequest() -> getPost();
+            if ($form ->isValid($result)){
+              $supplier = $form -> getValue('supplier');
+              $order_date = $form -> getValue('order_date');
+              $deposit = $form -> getValue('deposit');  
+            }
+            else {
+                $abd = 'e';
+            }
+            
+            
+            $this -> view -> result = $result;
+        }
+    }
+
 
 }
+
+
 
 
 

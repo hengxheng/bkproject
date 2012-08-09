@@ -93,7 +93,7 @@ function removeField() {
  
   // Build the attribute search string.  This will match the last added  dt and dd elements.  
   // Specifically, it matches any element where the id begins with 'newName<int>-'.
-  searchString = '*[id$=_' + lastId + ']';
+  searchString = '*[id$=_new' + lastId + ']';
  
   // Remove the elements that match the search string.
   $(searchString).remove()
