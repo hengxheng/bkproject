@@ -8,6 +8,7 @@
         Products    
     </caption>
     <tr>
+       <td> Category </td>
        <td> Product Name </td>
        <td> Product Code </td>
        <td> Product Size </td>
@@ -19,18 +20,19 @@
     
     <?php foreach ( $this -> products as $product) : ?>
     <tr>
-      <td> <?php echo $product-> product_name; ?> </td>
-      <td> <?php echo $product-> product_code; ?></td>
-      <td> <?php echo $product-> product_size; ?> </td>
-      <td> <?php echo $product-> product_weight; ?> </td>
-      <td> <?php echo $product-> product_price; ?> </td>
-      <td> <?php echo $product-> product_cost; ?> </td>
+      <td> <?php echo $product['category_name']; ?></td>
+      <td> <?php echo $product['product_name']; ?> </td>
+      <td> <?php echo $product['product_code']; ?></td>
+      <td> <?php echo $product['product_size']; ?> </td>
+      <td> <?php echo $product['product_weight']; ?> </td>
+      <td> <?php echo $product['product_price']; ?> </td>
+      <td> <?php echo $product['product_cost']; ?> </td>
       <td> 
-           <a href="<?php echo $this->url(array("controller" => "catalog", "action" => "viewproduct", "product_id" => $product->product_id)); ?>">View</a>
+           <a href="<?php echo $this->url(array("controller" => "catalog", "action" => "viewproduct", "product_id" => $product['product_id'])); ?>">View</a>
            &nbsp;
-           <a href="<?php echo $this->url(array("controller" => "catalog", "action" => "editproduct", "product_id" => $product->product_id)); ?>">Update</a>
+           <a href="<?php echo $this->url(array("controller" => "catalog", "action" => "editproduct", "product_id" => $product['product_id'])); ?>">Update</a>
            &nbsp;
-           <a href="<?php echo $this->url(array("controller" => "catalog", "action" => "deleteproduct", "product_id" => $product->product_id)); ?>">Delete</a>
+           <a href="<?php echo $this->url(array("controller" => "catalog", "action" => "deleteproduct", "product_id" => $product['product_id'])); ?>">Delete</a>
       </td>       
     </tr>
     <?php endforeach; ?>

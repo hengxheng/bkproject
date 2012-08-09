@@ -177,8 +177,16 @@ class CatalogController extends Zend_Controller_Action
     public function listproductAction()
     {
         $products_db = new Application_Model_DbTable_Products();
-        $products = $products_db -> fetchAll();
+        $products = $products_db -> fetchAll() -> toArray();
+        $i = 0;
+        foreach ($products as $product){ 
+            $category_db = new Application_Model_DbTable_ProductsCategory();
+            $category  = $category_db ->getCategoryName($product['category_id']);
+            $products[$i]['category_name'] = $category;
+            $i ++;
+        }
         $this -> view -> products = $products;
+        
     }
 
     public function viewproductAction()
