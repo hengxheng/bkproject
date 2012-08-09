@@ -9,6 +9,7 @@ class ZFExt_Form_Decorator_SimpleTable extends Zend_Form_Decorator_Abstract
 			return $content;
 		}
 		
+                $table_name = $this -> getOption('table_name');
 		$columns = $this->getOption('columns');
 		$class = $this->getOption('class');
 		$id = $this->getOption('id');
@@ -19,7 +20,10 @@ class ZFExt_Form_Decorator_SimpleTable extends Zend_Form_Decorator_Abstract
 		}
 
 		$result = '
+                        <br />
+                        <br />
 			<table class="'.$class.'" id="'.$id.'">
+                        <caption style="text-align" >'.$table_name.'</caption>
 				<thead>
 					<tr>
 						'.$columns_html.'

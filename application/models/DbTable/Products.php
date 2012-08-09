@@ -4,7 +4,7 @@ class Application_Model_DbTable_Products extends Zend_Db_Table_Abstract
 {
 
     protected $_name = 'products';
-
+  
     public function getProduct($id)
     {
         $id = (int)$id;

@@ -48,7 +48,7 @@ class OrderController extends Zend_Controller_Action
         $category_list = $category_db ->showCategory();
         
         
-        $category = new Zend_Form_Element_Select('category_new'.$id);
+        $category = new Zend_Form_Element_Select('category_'.$id);
         $category ->setBelongsTo($id)
                   ->addMultiOptions($category_list)
                   ->setDecorators(array(
@@ -56,28 +56,32 @@ class OrderController extends Zend_Controller_Action
                        'Errors',
                        array(array('data' => 'HtmlTag'), array('tag' => 'td', 'class' => 'element'))));
         
-        $product_name = new Zend_Form_Element_Select('product_name_new'.$id);
+        $product_name = new Zend_Form_Element_Select('product_name_'.$id);
         $product_name -> setBelongsto($id)
+                 ->addMultiOptions(array(''=>'------------------'))
                 ->setDecorators(array(
                        'ViewHelper',
                        'Errors',
                        array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
         
-        $quantity = new Zend_Form_Element_Text('quantity_new'.$id);
+        $quantity = new Zend_Form_Element_Text('quantity_'.$id);
         $quantity ->setBelongsTo($id)
                 ->setDecorators(array(
                        'ViewHelper',
                        'Errors',
                        array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
         
-        $packaging = new Zend_Form_Element_Text('packaging_new'.$id);
+        $packaging = new Zend_Form_Element_Text('packaging_'.$id);
         $packaging -> setBelongsTo($id)
                 ->setDecorators(array(
                        'ViewHelper',
                        'Errors',
                        array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
         
-        
+//        $content = '<srcipt>
+//                       $("#'.$id.'-category_new'.$id.'").change(
+//                           function(){
+//                           ';
         $content = $category -> __toString().$product_name -> __toString().$quantity -> __toString().$packaging -> __toString();
         $this->view->field = $content;
     }
@@ -87,46 +91,15 @@ class OrderController extends Zend_Controller_Action
         $this -> _helper -> layout() -> disableLayout();
         $category_id = $this -> _getParam('category',0);
         
-          switch ($category_id){
-            case 1:              
-                $product_db = new Application_Model_DbTable_Surfboard();
-                break;
-            case 2:
-                $product_db = new Application_Model_DbTable_Fin();
-                break;
-            case 3:
-                $product_db = new Application_Model_DbTable_Wetsuit();
-                break;
-            case 4:
-                $product_db = new Application_Model_DbTable_Cover();
-                break;
-            case 5: 
-                $product_db = new Application_Model_DbTable_Fireplace();
-                break;
-            case 6:
-                $product_db = new Application_Model_DbTable_Tent();
-                break;
-            case 7:
-                $product_db = new Application_Model_DbTable_FoldedTable();
-                break;
-            case 8:
-                $product_db = new Application_Model_DbTable_Umbrela();
-                break;
-            case 9:
-                $product_db = new Application_Model_DbTable_Sleepingbag();
-                break;
-            case 10:
-                $product_db = new Application_Model_DbTable_Cookingset();
-                break;
-            default:
-         
-        }
-        
-        $products = $product_db ->fetchAll();
+        $product_db = new Application_Model_DbTable_Products();      
+        $products = $product_db ->getProductByCategory($category_id);
  
         $html_content = '';
         foreach ($products as $product){
-            $html_content .= '<option value="'.$product -> item_code.'">'.$product -> product_name.'('.$product -> item_code.')</option>';
+            $product_id = $product['product_id'];
+             $product_code = $product['product_code'];
+            $product_name = $product['product_name'];
+            $html_content .= '<option value="'.$product_id.'">'.$product_name.'('.$product_code.')</option>';
         } 
         
         $this -> view -> html_content =  $html_content;

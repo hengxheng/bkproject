@@ -27,13 +27,39 @@ $(document).ready(function() {
            url: "<?php echo $this -> url(array('controller' => 'order', 'action' => 'addproduct', 'format' => 'html')); ?>",
            data: {category: category_id},
            success: function(fanhui){
+                 $("#product_name option").remove();
                  $("#product_name").append(fanhui);
                  $(".loading").remove();
-                  }
+           }
+       });
+     });
+     
+//     $('select').change(function(){
+//            alert("change");
+//    });
+    
+    $('#more_product').on('change', 'select', function(){
+      var str = $(this).attr('id');
+      var product_name = str.replace("category","product_name");
+       
+       $("body").append('<div class="loading">Loading..</div>');
+       var category_id = $(this).val();
+       $.ajax({
+           type:"POST",
+           url: "<?php echo $this -> url(array('controller' => 'order', 'action' => 'addproduct', 'format' => 'html')); ?>",
+           data: {category: category_id},
+           success: function(fanhui){
+                 $("#"+product_name+" option").remove();
+                 $("#"+product_name).append(fanhui);
+                 $(".loading").remove();
+           }
        });
      });
    }
 );    
+
+    
+     
 
  
 // Get value of id - integer appended to dynamic form field names and ids
@@ -42,8 +68,10 @@ $(document).ready(function() {
 // var id = document.getElementById('id').value;
 // Retrieve new element's html from controller
 function ajaxAddField() {
+  $("body").append('<div class="loading">Loading..</div>');
   $.ajax(
     {
+      async: false,
       type: "POST",
       url: "<?php echo $this->url(array('controller'=>'order','action' => 'newfield', 'format' => 'html'));?>",
       data: {id: id },
@@ -52,25 +80,27 @@ function ajaxAddField() {
         $("#more_product tr:last").after("<tr>"+newElement+"</tr>");
         // Increment and store id
         $("#row_num").val(++id);
+        $(".loading").remove();
       }
     }
   );
 }
  
 function removeField() {
-
+   $("body").append('<div class="loading">Loading..</div>');
   // Get the last used id
   var lastId = $("#row_num").val() - 1;
  
   // Build the attribute search string.  This will match the last added  dt and dd elements.  
   // Specifically, it matches any element where the id begins with 'newName<int>-'.
-  searchString = '*[id$=_new' + lastId + ']';
+  searchString = '*[id$=_' + lastId + ']';
  
   // Remove the elements that match the search string.
   $(searchString).remove()
  
   // Decrement and store id
   $("#row_num").val(--id);
+  $(".loading").remove();
 }
  
 </script>

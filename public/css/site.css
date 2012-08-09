@@ -175,3 +175,7 @@ a:hover{
     font-size: 1.2em;
 }
 
+.more_product {
+    border-collapse: collapse;
+    border: black solid 1px;
+}

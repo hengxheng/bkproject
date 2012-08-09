@@ -2,24 +2,22 @@
 
 class Application_Form_Order extends Zend_Form
 {
-   public $elementDecorators = array(
-        'ViewHelper',
-        'Errors',
-        array(array('data' => 'HtmlTag'), array('tag' => 'td', 'class' => 'element')),
-        array('Label', array('tag' => 'td')),
-        array(array('row' => 'HtmlTag'), array('tag' => 'tr')),
-    );
-
-    public $buttonDecorators = array(
-        'ViewHelper',
-        array(array('data' => 'HtmlTag'), array('tag' => 'td', 'class' => 'element')),
-        array(array('label' => 'HtmlTag'), array('tag' => 'td', 'placement' => 'prepend')),
-        array(array('row' => 'HtmlTag'), array('tag' => 'tr')),
-    );
-    
+//   public $elementDecorators = array(
+//        'ViewHelper',
+//        'Errors',
+//        array(array('data' => 'HtmlTag'), array('tag' => 'td', 'class' => 'element')),
+//        array('Label', array('tag' => 'td')),
+//        array(array('row' => 'HtmlTag'), array('tag' => 'tr')),
+//    );
+//
+//    public $buttonDecorators = array(
+//        'ViewHelper',
+//        array(array('data' => 'HtmlTag'), array('tag' => 'td', 'class' => 'element')),
+//        array(array('label' => 'HtmlTag'), array('tag' => 'td', 'placement' => 'prepend')),
+//        array(array('row' => 'HtmlTag'), array('tag' => 'tr')),
+//    );
+//    
     public function addRow(){
-//        $product_categories = new Application_Model_DbTable_ProductsCategory();
-//        $categories = 
         $row_form = new Zend_Form(
               array('elements'=>array(
                         'category' => array('type' => 'select'),
@@ -94,20 +92,6 @@ class Application_Form_Order extends Zend_Form
         ));
         
         
-//        $this -> addPrefixPath('ZFExt_Form_Decorator','ZFExt/Form/Decorator/','Decorator');
-//        $this ->setDecorators(array(
-//            'FormElements',array(
-//                  'SimpleTable',array(
-//                      'columns'=> array(
-//                          'Category',
-//                          'Product',
-//                          'Quantity',
-//                          'Package'),
-//                      'class'=> 'more_product'
-//                      )
-//                ),'Form'
-//            ));
-        
         $category_db = new Application_Model_DbTable_ProductsCategory();
         $category_list = $category_db ->showCategory();
         
@@ -121,7 +105,7 @@ class Application_Form_Order extends Zend_Form
         
         $product_name = new Zend_Form_Element_Select('product_name');
         $product_name -> setBelongsto("0")
-                ->addMultiOptions(array(''=>'---------------------'))
+                ->addMultiOptions(array(''=>'------------------'))
                 ->setDecorators(array(
                        'ViewHelper',
                        'Errors',
@@ -147,6 +131,7 @@ class Application_Form_Order extends Zend_Form
         $this -> setDisplayGroupDecorators( array(
                   'FormElements',array(
                   'SimpleTable',array(
+                      'table_name' => 'Product In Order',
                       'columns'=> array(
                           'Category',
                           'Product',
@@ -176,17 +161,6 @@ class Application_Form_Order extends Zend_Form
              'order' => 100
         ));
         
-       
-        
-//        $this -> addRow();
-//        $this -> addRow();
-//        $this -> addRow();
-        
-//        $this -> getElement('addRow') -> setDecorators( array( 'ViewHelper', array(array('td'=>'HtmlTay'), array('tag' => 'td', 'colspan' =>3)), array(array('tr'=> 'HtmlTag'), array('tag' => 'tr')) ));
-//        $this -> getElement('addRow')-> setOrder(100);
-        
-//        $this -> getElement('buttonRemove') -> setDecorators( array( 'ViewHelper', array(array('td'=>'HtmlTay'), array('tag' => 'td', 'colspan' =>3)), array(array('tr'=> 'HtmlTag'), array('tag' => 'tr')) ));
-//        $this -> getElement('buttonRemove')-> setOrder(101);
        
     }
     
