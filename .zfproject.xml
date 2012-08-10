@@ -88,6 +88,7 @@
           <actionMethod actionName="newfield"/>
           <actionMethod actionName="newProduct"/>
           <actionMethod actionName="orderhistory"/>
+          <actionMethod actionName="vieworder"/>
         </controllerFile>
         <controllerFile controllerName="Forms">
           <actionMethod actionName="index"/>
@@ -391,6 +392,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Order">
             <viewScriptFile forActionName="orderhistory"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Order">
+            <viewScriptFile forActionName="vieworder"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

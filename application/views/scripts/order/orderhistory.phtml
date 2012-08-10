@@ -1,8 +1,47 @@
 <div id="view-content">
-	
-    
-    <?php  
-       Zend_Debug::dump($this-> extra); 
-       Zend_Debug::dump($this-> supplier); 
-    ?>
+	<?php // Zend_Debug::dump($this -> orders); ?>
+    <table class="product_list">
+        <caption>
+         Order List    
+        </caption>
+        <tr>
+            <td>Order ID</td>
+            <td>Supplier</td>
+            <td>Order Date</td>
+            <td>Deposit</td>
+            <td>Final Payment</td>
+            <td>Freight</td>
+            <td>Local Fee</td>
+            <td>Action</td>
+        </tr>
+          <?php foreach ($this -> orders as $order):  ?>
+        <tr>
+            <td>
+                <?php echo $order['supply_order_id']; ?>              
+            </td>
+            <td>
+                 <?php echo $order['supplier_name'] ; ?>
+            </td>
+            <td>
+                <?php echo $order['order_date'] ; ?>
+            </td>
+            <td>
+                $<?php echo $order['deposit'] ; ?>
+            </td>
+            <td>
+                $<?php echo $order['final_payment'] ; ?>
+            </td>
+            <td>
+                $<?php echo $order['freight'] ; ?>
+            </td>
+            <td>
+                $<?php echo $order['local_fee'] ; ?>
+            </td>
+            <td>
+                <a href="<?php echo $this-> url(array('controller'=>'order','action'=>'vieworder','id'=>$order['supply_order_id'])); ?>">View</a>
+            </td>
+        </tr>
+          <?php endforeach; ?>        
+    </table>
+  
 </div>

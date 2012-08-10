@@ -1,0 +1,56 @@
+<div id="view-content">
+	
+    <?php 
+          $order = $this -> order;
+          $products = $this -> products;
+//          Zend_Debug::dump($order);
+//          Zend_Debug::dump($products);
+    ?>
+    
+    <table id="order_table">
+        <caption>Supply Order <?php echo $order['supply_order_id']; ?></caption>
+        <colgroup style="background-color: #EAF757; "></colgroup>
+        <colgroup></colgroup>
+        <colgroup style="background-color: #EAF757; "></colgroup>
+        <colgroup></colgroup>
+        <tr>
+            <td>Order Date</td>
+            <td><?php echo $order['order_date']; ?></td>
+            <td>Supplier</td>
+            <td><?php echo $this -> supplier; ?></td>
+        </tr>
+        <tr>
+            <td>Deposit</td>
+            <td>$<?php echo $order['deposit']; ?></td>
+            <td>Final Payment</td>
+            <td>$<?php echo $order['final_payment']; ?></td>
+        </tr>
+        <tr>
+            <td>Freight</td>
+            <td>$<?php echo $order['freight']; ?></td>
+            <td>Local Fee</td>
+            <td>$<?php echo $order['local_fee']; ?></td>
+        </tr>
+       
+        </table>
+        <table class ="product_list">     
+        <caption>Products in the Order</caption>
+        
+        <tr>
+            <td>Category</td>
+            <td>Product Name</td>            
+            <td>Quantity</td>
+            <td>Packaging</td>
+            <td>Action</td>
+        </tr>
+        <?php foreach ($products as $product) :?>
+        <tr>            
+            <td><?php echo $product['category_name'];?></td>
+            <td><?php echo $product['product_name']; ?></td>
+            <td><?php echo $product['product_quantity']; ?></td>
+            <td><?php echo $product['product_quantity']; ?></td>
+            <td><a href="<?php echo $this->url(array("controller" => "catalog", "action" => "viewproduct", "product_id" => $product['product_id'])); ?>">View</a></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>

@@ -86,7 +86,7 @@
     margin-top: 80px;
 } 
 
-.product_list caption {
+caption {
     font-size:2em;
 }
 
@@ -178,4 +178,16 @@ a:hover{
 .more_product {
     border-collapse: collapse;
     border: black solid 1px;
+}
+
+
+#order_table {
+    border-collapse:collapse;
+    width: 80%;
+    margin: 30px;
+    margin-top: 80px;
+} 
+
+#order_table td{
+    border:solid 1px black;  
 }

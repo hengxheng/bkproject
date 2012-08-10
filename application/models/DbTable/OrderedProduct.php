@@ -18,6 +18,15 @@ class Application_Model_DbTable_OrderedProduct extends Zend_Db_Table_Abstract
         $this -> insert($data);
         
     }
+    
+    public function getProductByOrder($supply_order_id)
+    {
+        $id = $supply_order_id;
+        
+        $select = $this -> select() -> where('supply_order_id = ?',$id); 
+        $rows = $this ->fetchAll($select);
+        return $rows -> toArray();
+    }
         
 }
 
