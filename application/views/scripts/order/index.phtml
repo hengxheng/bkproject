@@ -38,7 +38,7 @@ $(document).ready(function() {
 //            alert("change");
 //    });
     
-    $('#more_product').on('change', 'select', function(){
+    $('#more_product').on('change', '.xuanzhe', function(){
       var str = $(this).attr('id');
       var product_name = str.replace("category","product_name");
        
@@ -57,9 +57,6 @@ $(document).ready(function() {
      });
    }
 );    
-
-    
-     
 
  
 // Get value of id - integer appended to dynamic form field names and ids
@@ -96,7 +93,7 @@ function removeField() {
   searchString = '*[id$=_new' + lastId + ']';
  
   // Remove the elements that match the search string.
-  $(searchString).remove()
+  $(searchString).remove();
  
   // Decrement and store id
   $("#row_num").val(--id);

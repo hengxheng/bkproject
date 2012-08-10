@@ -102,7 +102,7 @@ class Application_Form_Order extends Zend_Form
                   ->setDecorators(array(
                        'ViewHelper',
                        'Errors',
-                       array(array('data' => 'HtmlTag'), array('tag' => 'td', 'class' => 'element'))));
+                       array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
         
         $product_name = new Zend_Form_Element_Select('product_name');
         $product_name -> setBelongsto("0")

@@ -51,11 +51,12 @@ class OrderController extends Zend_Controller_Action
         
         $category = new Zend_Form_Element_Select('category_new'.$id);
         $category ->setBelongsTo($id)
+                  ->setAttrib('class','xuanzhe')
                   ->addMultiOptions($category_list)
                   ->setDecorators(array(
                        'ViewHelper',
                        'Errors',
-                       array(array('data' => 'HtmlTag'), array('tag' => 'td', 'class' => 'element'))));
+                       array(array('data' => 'HtmlTag'), array('tag' => 'td'))));
         
         $product_name = new Zend_Form_Element_Select('product_name_new'.$id);
         $product_name -> setBelongsto($id)
@@ -105,43 +106,61 @@ class OrderController extends Zend_Controller_Action
 
     public function orderhistoryAction()
     {
-        $form = new Application_Form_Order();
-        
-        
-            
-        // Form has not been submitted - pass to view and return
-            if (!$this->getRequest()->isPost()) {
-            $this->view->form = $form;
-            return;
-            }
- 
-     // Form has been submitted - run data through preValidation()
-             $form->preValidation($_POST);
-   
-     // If the form doesn't validate, pass to view and return
-    if (!$form->isValid($_POST)) {
-      $this->view->form = $form;
-      return;
-    }
-   
-     // Form is valid
-    $this->view->form = $form;
+//        $form = new Application_Form_Order();
     
     
         if($this ->getRequest() ->isPost()){
             $result = $this ->getRequest() -> getPost();
-            if ($form ->isValid($result)){
-              $supplier = $form -> getValue('supplier');
-              $order_date = $form -> getValue('order_date');
-              $deposit = $form -> getValue('deposit');  
-            }
-            else {
-                $abd = 'e';
-            }
+
+            $supplier = $result['supplier'];
+            $order_date = $result['order_date'];
+            $deposit = $result['deposit']; 
+            $finalpayment = $result['finalpayment'];
+            $freight = $result['freight'];
+            $localfee = $result['localfee'];
             
+            $order_db = new Application_Model_DbTable_SupplyOrder();
+            $supply_order_id = $order_db -> addOrder($order_date, $deposit, $finalpayment, $freight, $localfee, $supplier);
+                    
             
-            $this -> view -> result = $result;
+       // product 1     
+            $category = $result['category'];
+            $product_id = $result['product_name'];
+            $quantity = $result['quantity'];
+            $packaging = $result['packaging'];
+            
+            $orderedproduct_db = new Application_Model_DbTable_OrderedProduct();
+            $orderedproduct_db -> addProduct($supply_order_id, $product_id, $category,  $packaging, $quantity);
+            
+      // extra products
+           $extra_products = array();
+           foreach ($result as $item){
+                if (is_array($item)){ 
+                    $product = array();
+                    foreach ($item as $attr){
+                        $product[] = $attr;
+                    }
+                    $extra_products[] = $product; 
+                }                              
+            }
+
+            foreach ($extra_products as $extra){
+                $product_id = $extra[1];
+                $category = $extra[0];
+                $quantity = $extra[2];
+                $packaging = $extra[3];
+                
+                $orderedproduct_db = new Application_Model_DbTable_OrderedProduct();
+                $orderedproduct_db -> addProduct($supply_order_id, $product_id, $category,  $packaging, $quantity);
+            }
         }
+        else {
+//              $abd = 'e';
+        }
+            
+            
+//         $this -> view -> extra = $extra_products;
+//        $this -> view -> supplier = $contents;
     }
 
 

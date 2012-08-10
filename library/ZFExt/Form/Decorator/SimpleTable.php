@@ -23,6 +23,10 @@ class ZFExt_Form_Decorator_SimpleTable extends Zend_Form_Decorator_Abstract
                         <br />
                         <br />
 			<table class="'.$class.'" id="'.$id.'">
+                        <colgroup style="background-color:#F7577C;"></colgroup>
+                        <colgroup style="background-color:#E5F757;"></colgroup>
+                        <colgroup style="background-color:#D557F7;"></colgroup>
+                        <colgroup style="background-color:#57AAF7;"></colgroup>
                         <caption style="text-align" >'.$table_name.'</caption>
 				<thead>
 					<tr>
