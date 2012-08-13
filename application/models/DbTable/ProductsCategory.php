@@ -50,7 +50,7 @@ class Application_Model_DbTable_ProductsCategory extends Zend_Db_Table_Abstract
     {
         $categories = $this ->fetchAll();
         $subcategories = $this ->fetchAll();
-        $category_list = array('','---------------------');
+        $category_list = array('',' ');
         foreach ($categories as $category) {
             if ($category -> parent_id == 0){
             $category_list[$category -> product_category_id] = $category -> category_name;

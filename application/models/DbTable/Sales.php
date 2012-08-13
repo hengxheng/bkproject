@@ -71,5 +71,73 @@ class Application_Model_DbTable_Sales extends Zend_Db_Table_Abstract
         $row = $this-> fetchRow('sales_id= '. $id);
         return $row -> toArray();
     }
+    
+    public function totalSales()
+    {
+        $query = "SELECT SUM(sales_price) AS total FROM sales";
+        $row = $this ->getAdapter() -> query($query);
+        $total = $row -> fetch();
+        return $total['total']; 
+    }
+    
+    public function totalSalesByDate($year='now', $month='now', $product_code = 0)
+    {
+        $query = "SELECT SUM(sales_price) AS total FROM sales WHERE ";
+        if ($year == 'now'){
+            $query .= "YEAR(date)=YEAR(CURDATE())";
+        }
+        else{
+            $query .= "YEAR(date)=".$year;
+        }
+        
+        if ($month == 'now'){
+            $query .= "MONTH(date)=MONTH(CURDATE())";
+        }
+        else{
+            $query .= "MONTH(date)=".$month;
+        }
+         
+        if ($product_code != 0){
+            $query .= "item_code =".$product_code;
+        }       
+    }
+    
+    public function totalSalesByWeek($week='now',$product_code = 0)
+    {
+        $query = "SELECT SUM(sales_price) AS total FROM sales WHERE ";
+        
+        if ($week == 'now'){
+            $query .= "YEARWEEK(date) = YEARWEEK(CURRENT_DATE)"; 
+        }
+        elseif ($week == 'last'){
+            $query .= "YEARWEEK(date) = YEARWEEK(CURRENT_DATE - INTERVAL 7 DAY)";
+        }
+        
+        if ($product_code != 0){
+            $query .= "item_code =".$product_code;
+        }
+    }
+    
+    public function totalQuantityByDate($year='now', $month='now', $product_code = 0)
+    {
+        $query = "SELECT SUM(sales_price) AS total FROM sales WHERE ";
+        if ($year == 'now'){
+            $query .= "YEAR(date)=YEAR(CURDATE())";
+        }
+        else{
+            $query .= "YEAR(date)=".$year;
+        }
+        
+        if ($month == 'now'){
+            $query .= "MONTH(date)=MONTH(CURDATE())";
+        }
+        else{
+            $query .= "MONTH(date)=".$month;
+        }
+         
+        if ($product_code != 0){
+            $query .= "item_code =".$product_code;
+        }   
+    }
 }
 
