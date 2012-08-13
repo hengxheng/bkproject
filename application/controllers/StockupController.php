@@ -33,10 +33,10 @@ class StockupController extends Zend_Controller_Action
             $item_code = $form -> getValue("product");
             $product_quantity = $form -> getValue("quantity");
             $stockup_date = $form -> getValue("order_date");
-            $supply_order_id = "1";
+  //          $supply_order_id = "1";
             
             $stock = new Application_Model_DbTable_Stockup();
-            $stock ->stockUp($supplier_id, $item_code, $product_category_id, $product_quantity, $stockup_date, $supply_order_id); 
+            $stock ->stockUp($supplier_id, $item_code, $product_category_id, $product_quantity, $stockup_date); 
             $this -> _helper -> redirector("index","stock");
         }
         }
@@ -60,7 +60,7 @@ class StockupController extends Zend_Controller_Action
         } 
         
         $product_form = new Zend_Form_Element_Select('product');
-        $product_form -> setLabel('Product')
+        $product_form //-> setLabel('Product')
                  -> addMultiOptions($products_list);
         
         $this -> view -> product_form = $product_form -> __toString();

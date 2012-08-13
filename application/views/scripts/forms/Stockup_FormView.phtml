@@ -1,0 +1,22 @@
+<div style="padding: 8px;">
+    <table class="form_table">
+        <caption>Product Stock Up</caption>
+            <tr>
+                <td>Product Category</td>
+                <td><?php echo $this->element->getElement('category'); ?></td>
+            </tr>
+            <tr>
+                <td>Product</td>
+                <td id="product"> <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;********</td>
+            </tr>
+            <tr>
+                <td>Quantity</td>
+                <td><?php echo $this->element->getElement('quantity'); ?></td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td><?php echo $this ->element-> getElement('order_date'); ?></td>
+            </tr>
+    </table>
+    <?php echo $this->element->getElement('submit'); ?>
+</div>

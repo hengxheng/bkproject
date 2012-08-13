@@ -9,7 +9,7 @@
              url: "<?php echo $this -> url(array("controller"=> "stockup", "action"=> "product",)); ?>",
              data: {id: category_id},
              success: function(result){
-                 $("#products").html(result);
+                 $("#product").html(result);
              }
          });
 //        alert(category_id);
