@@ -61,6 +61,20 @@ class Application_Form_Sales extends Zend_Form
                 ))
                 -> setOrder(9);
         
+        $this -> addElement('text','name',array(
+               'label' => 'Customer Name',
+             'order' => 10,
+        ));
+        
+        $this -> addElement('text','postcode',array(
+             'label' => 'Post Code',
+             'order' => 11,
+        ));
+        $this -> addElement('text','contact', array(
+            'label' => 'Customer Contact Method',
+            'order' => 12,
+        ));
+        
         $status = new Zend_Form_Element_Select('sales_status');
         $status -> setLabel ("Status")
                 -> addMultiOptions(array(
@@ -69,17 +83,17 @@ class Application_Form_Sales extends Zend_Form
                     "Sent" => "Sent",  
                     "Cancel" => "Cancel",
                 ))
-                -> setOrder(10);
+                -> setOrder(15);
         
         $comment = new Zend_Form_Element_Textarea('comment');
         $comment -> setLabel("Comments")
-                 -> setOrder(11)
+                 -> setOrder(16)
                  -> setAttrib('COLS',30)
                  -> setAttrib('ROWS',4);
         
         $submit = new Zend_Form_Element_Submit('submit');
         $submit -> setLabel("Submit")
-                -> setOrder(12);
+                -> setOrder(17);
         
         $this -> addElements (array($id, $category, $quantity, $price, $charged_postage, $real_postage, $date, $dispatch, $source, $status, $comment, $submit));      
     }

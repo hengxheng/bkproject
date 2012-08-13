@@ -175,6 +175,7 @@
           <dbTableFile dbTableName="Sales"/>
           <dbTableFile dbTableName="ProductsToCategories"/>
           <dbTableFile dbTableName="Products"/>
+          <dbTableFile dbTableName="Customers"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
