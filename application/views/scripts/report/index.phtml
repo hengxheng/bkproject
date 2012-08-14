@@ -1,3 +1,20 @@
+<script>
+$(document).ready(function(){
+   $("#category").change(function(){
+      var category_id = $("#category").val();
+      
+      $.ajax({
+         type:"POST",
+         url: "<?php echo $this -> url (array("controller" => "report", "action" => "catrecords")); ?>",
+         data: {id: category_id},
+         success: function(result){
+             $("#report_board").html(result);
+         }
+      });
+   });
+});
+</script>
+<?php // Zend_Debug::dump($this -> output); ?> 
 <div id="view-content">
     Total Sales: <?php echo $this -> total_sales; ?>
 
@@ -6,6 +23,21 @@
             <td style="vertical-align: bottom;">Product Category</td><td><?php echo $this -> category_option; ?></td>
         </tr>
     </table>
+    <div id ="report_board">
+        <table id ="report_table">
+            <tr><td>&nbsp;</td><td>Today</td><td>This week</td><td>This month</td><td>This quarter</td><td>This year</td></tr>
+            <?php foreach ($this -> output as $key => $item): ?>
+            <tr>
+                <td><?php echo $key?></td>
+                <td>$<?php echo $item['today']; ?></td>
+                <td>$<?php echo $item['week']; ?></td>
+                <td>$<?php echo $item['month']; ?></td>
+                <td>$<?php echo $item['quarter']; ?></td>
+                <td>$<?php echo $item['year']; ?></td>
+            </tr>          
+            <?php endforeach; ?>
+        </table>        
+    </div>
      
              
 </div>

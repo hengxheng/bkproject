@@ -79,8 +79,9 @@ class Application_Model_DbTable_Sales extends Zend_Db_Table_Abstract
         $total = $row -> fetch();
         return $total['total']; 
     }
-    
-    public function totalSalesByDate($year='now', $month='now', $product_code = 0)
+   
+    // product search by given date
+    public function ptotalSalesByDate($year='now', $month='now', $product_code = 0)
     {
         $query = "SELECT SUM(sales_price) AS total FROM sales WHERE ";
         if ($year == 'now'){
@@ -102,23 +103,47 @@ class Application_Model_DbTable_Sales extends Zend_Db_Table_Abstract
         }       
     }
     
-    public function totalSalesByWeek($week='now',$product_code = 0)
+    //product search by given week
+    public function ptotalSalesByWeek($week= 0,$product_code = 0)
     {
         $query = "SELECT SUM(sales_price) AS total FROM sales WHERE ";
+        $_week = $week *7;
+        $query .= "YEARWEEK(date) = YEARWEEK(CURRENT_DATE - INTERVAL ".$_week." DAY)";
         
-        if ($week == 'now'){
-            $query .= "YEARWEEK(date) = YEARWEEK(CURRENT_DATE)"; 
+        
+        if ($product_code != 0){
+            $query .= "item_code =".$product_code; 
         }
-        elseif ($week == 'last'){
-            $query .= "YEARWEEK(date) = YEARWEEK(CURRENT_DATE - INTERVAL 7 DAY)";
+        
+        $rows = $this ->getAdapter()-> query($query);
+        $total = $rows -> fetch();
+        return $total['total'];
+    }
+    
+    //product search by given quarter
+    public function ptotalSalesByQuarter($year = 'now',$quarter = 0,$product_code = 0)
+    {
+        $query = "SELECT SUM(sales_price) AS total FROM sales WHERE ";
+        if ($year == 'now'){
+            $query .= "YEAR(date)=YEAR(CURDATE())";
         }
+        else{
+            $query .= "YEAR(date)=".$year;
+        }
+        
+        $query .= "QUARTER(date) = QUARTER(CURDATE() - ".$quarter.")";
         
         if ($product_code != 0){
             $query .= "item_code =".$product_code;
-        }
+        } 
+        
+        $rows = $this ->getAdapter()-> query($query);
+        $total = $rows -> fetch();
+        return $total['total'];
     }
     
-    public function totalQuantityByDate($year='now', $month='now', $product_code = 0)
+    //product quantity search by given date
+    public function ptotalQuantityByDate($year='now', $month='now', $product_code = 0)
     {
         $query = "SELECT SUM(sales_price) AS total FROM sales WHERE ";
         if ($year == 'now'){
@@ -129,15 +154,143 @@ class Application_Model_DbTable_Sales extends Zend_Db_Table_Abstract
         }
         
         if ($month == 'now'){
-            $query .= "MONTH(date)=MONTH(CURDATE())";
+            $query .= "MONTH(date)= MONTH(CURDATE())";
         }
         else{
-            $query .= "MONTH(date)=".$month;
+            $query .= "MONTH(date)= ".$month;
         }
          
         if ($product_code != 0){
             $query .= "item_code =".$product_code;
-        }   
+        } 
+        
+        $rows = $this ->getAdapter()-> query($query);
+        $total = $rows -> fetch();
+        return $total['total'];
     }
+    
+     
+    public function ctotalSalesByDate($category_id, $date = 'now')
+    {
+        $query = "SELECT SUM(sales_price) AS total FROM sales WHERE ";
+        if ($date == 'now'){
+            $query .= "date = curdate()";
+        }
+        else{
+            $query .= "date = ".$date;
+        }
+        
+        $query .= "And product_category_id =".$category_id; 
+        
+        $row = $this ->getAdapter()-> query($query);
+        $total = $row -> fetch();
+        return $total['total'];
+    }
+    
+    //category search by given week
+    public function ctotalSalesByWeek($category_id, $week= 0)
+    {
+        $query = "SELECT SUM(sales_price) AS total FROM sales WHERE ";
+        $_week = $week *7;
+        $query .= "YEARWEEK(date) = YEARWEEK(CURRENT_DATE - INTERVAL ".$_week." DAY)";
+        
+        
+        $query .= "And product_category_id =".$category_id;
+        
+        $row = $this ->getAdapter()-> query($query);
+        $total = $row -> fetch();
+        return $total['total'];
+    }
+    
+    
+    //category search by given month
+    public function ctotalSalesByMonth($category_id,$year='now', $month='now')
+    {
+        $query = "SELECT SUM(sales_price) AS total FROM sales WHERE ";
+        if ($year == 'now'){
+            $query .= "YEAR(date)=YEAR(CURDATE())";
+        }
+        else{
+            $query .= "YEAR(date)=".$year;
+        }
+        
+        if ($month == 'now'){
+            $query .= " And MONTH(date)=MONTH(CURDATE())";
+        }
+        else{
+            $query .= "And MONTH(date)=".$month;
+        }
+         
+        $query .= " And product_category_id =".$category_id; 
+        
+        $row = $this ->getAdapter() -> query($query);
+        $total = $row -> fetch();
+        return $total['total'];
+    }
+    
+    
+    
+    //category search by given quarter
+    public function ctotalSalesByQuarter($category_id, $year = 'now',$quarter = 0)
+    {
+        $query = "SELECT SUM(sales_price) AS total FROM sales WHERE ";
+        if ($year == 'now'){
+            $query .= "YEAR(date)=YEAR(CURDATE())";
+        }
+        else{
+            $query .= "YEAR(date)=".$year;
+        }
+        
+        $query .= "And QUARTER(date) = QUARTER(CURDATE() - ".$quarter.")";
+        
+        
+        $query .= "And product_category_id =".$category_id;
+         
+        
+        $row = $this ->getAdapter()-> query($query);
+        $total = $row -> fetch();
+        return $total['total'];
+    }
+    
+    //cateogry search by given year
+    public  function ctotalSalesByYear($category_id,$year='now')
+    {
+        $query = "SELECT SUM(sales_price) AS total FROM sales WHERE ";
+        if ($year == 'now'){
+            $query .= "YEAR(date)=YEAR(CURDATE())";
+        }
+        else{
+            $query .= "YEAR(date)=".$year;
+        }
+         $query .= "And product_category_id =".$category_id; 
+         
+        $row = $this ->getAdapter() -> query($query);
+        $total = $row -> fetch();
+        return $total['total'];
+    }
+    
+//    public function ctotalQuantityByDate($category_id, $year='now', $month='now')
+//    {
+//        $query = "SELECT SUM(sales_price) AS total FROM sales WHERE ";
+//        if ($year == 'now'){
+//            $query .= "YEAR(date)=YEAR(CURDATE())";
+//        }
+//        else{
+//            $query .= "YEAR(date)=".$year;
+//        }
+//        
+//        if ($month == 'now'){
+//            $query .= "MONTH(date)= MONTH(CURDATE())";
+//        }
+//        else{
+//            $query .= "MONTH(date)= ".$month;
+//        }
+//         
+//        $query .= "product_category_id =".$category_id;
+//        
+//        $rows = $this ->getAdapter()-> query($query);
+//        $total = $rows -> fetch();
+//        return $total['total'];
+//    }
 }
 

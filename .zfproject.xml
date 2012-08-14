@@ -110,6 +110,7 @@
         </controllerFile>
         <controllerFile controllerName="Report">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="getcategoryrecords"/>
         </controllerFile>
         <controllerFile controllerName="View">
           <actionMethod actionName="index"/>
@@ -396,6 +397,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Order">
             <viewScriptFile forActionName="vieworder"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Report">
+            <viewScriptFile forActionName="getcategoryrecords"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

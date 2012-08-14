@@ -61,7 +61,7 @@ class Application_Form_Order extends Zend_Form
         
         $date = new ZendX_JQuery_Form_Element_DatePicker(
                         'order_date',
-                        array('label' => 'Order Date:',
+                         array('label' => 'Order Date:',
                               'order' => 3,));
         $date ->setJQueryParam('dateFormat','yy-mm-dd')
                 ->setJQueryParam('changeYear','true')
